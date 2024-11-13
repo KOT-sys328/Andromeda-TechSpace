@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:SuperInovationGame2024/Assets/Download.meta
 guid: 570f623709dae4a43b3d596a6ff54436
+========
+guid: c65728c22826eca48b10a7a9002b0423
+>>>>>>>> cb1aa2c2ec28c8ff8b125925b5ab01b3c1d6ae2c:SuperInovationGame2024/Assets/InputSystem.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
