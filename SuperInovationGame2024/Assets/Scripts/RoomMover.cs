@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 using Random = UnityEngine.Random;
 
 public class RoomMover : MonoBehaviour
@@ -31,7 +32,7 @@ public class RoomMover : MonoBehaviour
 
     IEnumerator Move(Rigidbody room)
     {
-        while (room.transform.position.y <= 9)
+        while (room.transform.position.y <= 5.8)
         {
             room.velocity = Vector3.up * speed;
             yield return null;
@@ -43,6 +44,13 @@ public class RoomMover : MonoBehaviour
 
     void SpawnNewRoom()
     {
-
+        int randomNum = Random.Range(0, roomsCount);
+        while (rooms[randomNum].gameObject.activeSelf == true)
+        {
+            randomNum = Random.Range(0, roomsCount);
+        }
+        rooms[randomNum].transform.position = positions[3].position;
+        rooms[randomNum].gameObject.SetActive(true);
+        StartCoroutine(Move(rooms[randomNum]));
     }
 }
