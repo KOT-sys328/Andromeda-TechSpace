@@ -9,19 +9,25 @@ public class Player : MonoBehaviour
     [SerializeField] int health;
     [SerializeField] float speed;
     private RectTransform rect;
-    private int layerMask = 7;
+    private Canvas canvas;
     void Start()
     {
         rect = GetComponent<RectTransform>();
+        canvas = GetComponentInParent<Canvas>();
     }
     void Update()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-        // Does the ray intersect any objects excluding the player layer
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
-        {
-            rect.position = hit.point;
-        }
+        MoveForMouse();
+    }
+    private void MoveForMouse()
+    {
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            canvas.transform as RectTransform,
+            Input.mousePosition,
+            canvas.worldCamera,
+            out Vector2 localPoint
+        );
+
+        rect.localPosition = localPoint;
     }
 }
