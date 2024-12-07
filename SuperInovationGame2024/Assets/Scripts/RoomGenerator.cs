@@ -6,9 +6,9 @@ using UnityEngine;
 public class RoomGenerator : MonoBehaviour
 {
 
-    [SerializeField] List<Rigidbody> roomsRbs = new List<Rigidbody>();
+    [SerializeField] List<Transform> roomsRbs = new List<Transform>();
     [SerializeField] List<Transform> roomsPos = new List<Transform>();
-    [SerializeField] Rigidbody firstRoom;
+    [SerializeField] Transform firstRoom;
     [SerializeField] float speed;
     private int roomsCount;
     private Action<Transform> roomGen;
@@ -36,15 +36,15 @@ public class RoomGenerator : MonoBehaviour
         roomsRbs[randomNumber].gameObject.SetActive(true);
         StartCoroutine(Move(roomsRbs[randomNumber]));
     }
-    IEnumerator Move(Rigidbody room)
+    IEnumerator Move(Transform room)
     {
-        while (room.transform.position.y <= 6)
+        while (room.transform.position.y < 6)
         {
-            room.velocity = Vector3.up * speed;
+            room.position += Vector3.up * speed * Time.deltaTime;
             yield return null;
         }
-        room.velocity = Vector3.zero;
+
         room.gameObject.SetActive(false);
-        roomGen(roomsPos[3]);
+        roomGen(roomsPos[roomsPos.Count-1]);
     }
 }
