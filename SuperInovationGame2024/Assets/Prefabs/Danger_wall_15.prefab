@@ -210,6 +210,39 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &2880912627985764047
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1873779132584631718}
+  m_Layer: 9
+  m_Name: Dangers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1873779132584631718
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2880912627985764047}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2493253025947069380}
+  - {fileID: 7172109516093080223}
+  m_Father: {fileID: 6011463934570237518}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3254910271711977043
 GameObject:
   m_ObjectHideFlags: 0
@@ -222,8 +255,8 @@ GameObject:
   - component: {fileID: 1128292772083027180}
   - component: {fileID: 8832386260044463350}
   - component: {fileID: 2854415496516010742}
-  m_Layer: 0
-  m_Name: Wall
+  m_Layer: 9
+  m_Name: Danger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -242,7 +275,7 @@ Transform:
   m_LocalScale: {x: 2, y: 1, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6011463934570237518}
+  m_Father: {fileID: 1873779132584631718}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1128292772083027180
 MeshFilter:
@@ -872,13 +905,12 @@ Transform:
   - {fileID: 92405914047417821}
   - {fileID: 5676265810585954595}
   - {fileID: 4140418165619248088}
-  - {fileID: 2493253025947069380}
-  - {fileID: 7172109516093080223}
   - {fileID: 7194485795461426824}
   - {fileID: 2028366827226419782}
   - {fileID: 716665540425638473}
   - {fileID: 8718243590260656993}
   - {fileID: 1228182701453976202}
+  - {fileID: 1873779132584631718}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8447562541590706183
@@ -893,8 +925,8 @@ GameObject:
   - component: {fileID: 8756156498112309766}
   - component: {fileID: 1099156050327832253}
   - component: {fileID: 8444791676853510067}
-  m_Layer: 0
-  m_Name: Wall
+  m_Layer: 9
+  m_Name: Danger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -913,7 +945,7 @@ Transform:
   m_LocalScale: {x: 2, y: 1, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6011463934570237518}
+  m_Father: {fileID: 1873779132584631718}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8756156498112309766
 MeshFilter:

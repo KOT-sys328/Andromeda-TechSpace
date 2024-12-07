@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 8887239985326090723}
   - component: {fileID: 7642101403954006591}
   - component: {fileID: 1530145484620240131}
-  m_Layer: 0
-  m_Name: Danger_Wall
+  m_Layer: 9
+  m_Name: Danger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_LocalScale: {x: 2.5, y: 1, z: 8}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8343835410975871915}
+  m_Father: {fileID: 7662893476285196753}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8887239985326090723
 MeshFilter:
@@ -117,8 +117,8 @@ GameObject:
   - component: {fileID: 3282557884453508653}
   - component: {fileID: 6256212849376223422}
   - component: {fileID: 5542349508041139469}
-  m_Layer: 0
-  m_Name: Danger_Wall
+  m_Layer: 9
+  m_Name: Danger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -137,7 +137,7 @@ Transform:
   m_LocalScale: {x: 2.5, y: 1, z: 8}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8343835410975871915}
+  m_Father: {fileID: 7662893476285196753}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3282557884453508653
 MeshFilter:
@@ -222,8 +222,8 @@ GameObject:
   - component: {fileID: 3301387470766966774}
   - component: {fileID: 9145095399687806054}
   - component: {fileID: 367659421183038761}
-  m_Layer: 0
-  m_Name: Danger_Wall
+  m_Layer: 9
+  m_Name: Danger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -242,7 +242,7 @@ Transform:
   m_LocalScale: {x: 8, y: 1, z: 2.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8343835410975871915}
+  m_Father: {fileID: 7662893476285196753}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3301387470766966774
 MeshFilter:
@@ -345,10 +345,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2461911429287837443}
-  - {fileID: 1748861636278196908}
-  - {fileID: 5905785464800210978}
-  - {fileID: 3769085341515562401}
-  - {fileID: 8311726193186951044}
   - {fileID: 9043063871636353462}
   - {fileID: 1090693516473665947}
   - {fileID: 5414640438554733889}
@@ -356,7 +352,43 @@ Transform:
   - {fileID: 7666942813665408034}
   - {fileID: 5256193802168909781}
   - {fileID: 3088773630608719936}
+  - {fileID: 7662893476285196753}
   m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1426121432871518751
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7662893476285196753}
+  m_Layer: 9
+  m_Name: Dangers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7662893476285196753
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1426121432871518751}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1748861636278196908}
+  - {fileID: 5905785464800210978}
+  - {fileID: 3769085341515562401}
+  - {fileID: 8311726193186951044}
+  m_Father: {fileID: 8343835410975871915}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1476638947308746638
 GameObject:
@@ -1210,8 +1242,8 @@ GameObject:
   - component: {fileID: 1072918185048203606}
   - component: {fileID: 3246251720807846218}
   - component: {fileID: 1051791830003427276}
-  m_Layer: 0
-  m_Name: Danger_Wall
+  m_Layer: 9
+  m_Name: Danger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1230,7 +1262,7 @@ Transform:
   m_LocalScale: {x: 8, y: 1, z: 2.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8343835410975871915}
+  m_Father: {fileID: 7662893476285196753}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1072918185048203606
 MeshFilter:
