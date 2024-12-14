@@ -12,6 +12,8 @@ public class Player : MonoBehaviour
     private const int dangerLayer = 9;
     private RectTransform rect;
     private Canvas canvas;
+    private float timerOnDeath = 0;
+    public static int onDeath = 0;
     void Start()
     {
         rect = GetComponent<RectTransform>();
@@ -20,6 +22,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         MoveForMouse();
+        if (timerOnDeath > 0.0f) { timerOnDeath -= Time.deltaTime; }
     }
     private void MoveForMouse()
     {
@@ -32,11 +35,15 @@ public class Player : MonoBehaviour
 
         rect.localPosition = localPoint;
     }
+
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.layer == dangerLayer ) 
+        if (collision.gameObject.layer == dangerLayer && timerOnDeath <= 0.0f) 
         { 
             UI.Instance.StopTime();
+            //audioSource.play();
+            timerOnDeath = 3;
         }
     }
+
 }
