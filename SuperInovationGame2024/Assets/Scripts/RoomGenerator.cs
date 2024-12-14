@@ -45,6 +45,6 @@ public class RoomGenerator : MonoBehaviour
         }
         room.velocity = Vector3.zero;
         room.gameObject.SetActive(false);
-        roomGen(roomsPos[4]);
+        roomGen(roomsPos[3]);
     }
 }
