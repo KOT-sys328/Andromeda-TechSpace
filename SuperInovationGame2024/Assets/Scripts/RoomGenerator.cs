@@ -19,16 +19,12 @@ public class RoomGenerator : MonoBehaviour
         firstRoom.gameObject.SetActive(true);
         StartCoroutine(Move(firstRoom));
         roomsCount = roomsRbs.Count;
-        foreach (var pos in roomsPos)
-        {
-            roomGen(pos);
-        }
+        foreach (var pos in roomsPos) { roomGen(pos); }
     }
-    private void GenerateRoom(Transform pos)
-    {
+    private void GenerateRoom(Transform pos) {
+
         int randomNumber = UnityEngine.Random.Range(0, roomsCount);
-        while (roomsRbs[randomNumber].gameObject.activeSelf == true)
-        {
+        while (roomsRbs[randomNumber].gameObject.activeSelf == true) {
             randomNumber = UnityEngine.Random.Range(0, roomsCount);
         }
 
@@ -36,10 +32,8 @@ public class RoomGenerator : MonoBehaviour
         roomsRbs[randomNumber].gameObject.SetActive(true);
         StartCoroutine(Move(roomsRbs[randomNumber]));
     }
-    IEnumerator Move(Transform room)
-    {
-        while (room.transform.position.y < 6)
-        {
+    IEnumerator Move(Transform room) {
+        while (room.transform.position.y < 6) {
             room.position += Vector3.up * speed * Time.deltaTime;
             yield return null;
         }
