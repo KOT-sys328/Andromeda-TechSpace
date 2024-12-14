@@ -6,62 +6,37 @@ using static UnityEditor.PlayerSettings;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] int maxHealth = 10;
     [SerializeField] int health;
-    [SerializeField] int healthMax;
     [SerializeField] float speed;
-    [SerializeField] float speedMiddle;
-    [SerializeField] float speedMax;
-    [SerializeField] float SpeedMin;
-    [SerializeField] int immortality;
-
+    private const int dangerLayer = 9;
     private RectTransform rect;
-    private int layerMask = 7;
+    private Canvas canvas;
     void Start()
     {
         rect = GetComponent<RectTransform>();
+        canvas = GetComponentInParent<Canvas>();
     }
     void Update()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
-        {
-            rect.position = new Vector3(hit.point.x, 0, hit.point.z);
-        }
-
-        if (immortality > 0)  
-        {
-            InvokeRepeating("OnImmortality", 1, 1);   
-        }
+        MoveForMouse();
     }
-    void OnCollisionEnter(Collision collision)
+    private void MoveForMouse()
     {
-        Death();
-    }
-    void Death()
-    {
-        if (immortality <= 0)
-        {
-            immortality = 5;
-            health--;
-            speed = speedMiddle;
-            rect.position = new Vector3(0, 0, 0);
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            canvas.transform as RectTransform,
+            Input.mousePosition,
+            canvas.worldCamera,
+            out Vector2 localPoint
+        );
 
-            Debug.Log("Reset immortality: " + immortality);
-            Debug.Log("Health: " + health);
-
-            if (health <= 0)
-            {
-                //Destroy(gameObject);
-            }
-        }
+        rect.localPosition = localPoint;
     }
-    void OnImmortality()
+    private void OnCollisionEnter(Collision collision)
     {
-        if (immortality > 0)
-        {
-            immortality -= 1;
-            Debug.Log("Immortality: " + immortality);
+        if (collision.gameObject.layer == dangerLayer ) 
+        { 
+            UI.Instance.StopTime();
         }
     }
 }
