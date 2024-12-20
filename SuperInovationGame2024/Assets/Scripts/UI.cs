@@ -5,36 +5,39 @@ using UnityEngine.SceneManagement;
 using Unity.VisualScripting;
 using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class UI : MonoBehaviour {
 
     public static UI Instance;
-    private float timeSpeed;
     [SerializeField] private Button startButtom;
     [SerializeField] private Button resumeButtom;
     [SerializeField] private Button restartButtom;
+    [SerializeField] private Button shopButtom;
+    [SerializeField] private Button settingsButtom;
+    [SerializeField] private Button exitShopButtom;
+    [SerializeField] private Button exitSettingsButtom;
     [SerializeField] private Button exitButtom;
-    [SerializeField] private Button slowButtom;
-    [SerializeField] private Button speedButtom;
-    [SerializeField] private Button superSpeedButtom;
     [SerializeField] private GameObject menu;
     [SerializeField] private GameObject loadScreen;
+    [SerializeField] private GameObject settingsScreen;
+    [SerializeField] private GameObject shopScreen;
 
     void Start() 
     {
+        Time.timeScale = 0;
         loadScreen.SetActive(false);
         Instance = this;
-        timeSpeed = 1;
         menu.SetActive(false);
         OnClickBottom();
     }
     private void Update() 
     {
         OnClickEnter();
+        
     }
 
-    public void StartTime() { Time.timeScale = timeSpeed; startButtom.gameObject.SetActive(false); }
-    public void ChangeTimeSpeed(float speed) { timeSpeed = speed; Time.timeScale = timeSpeed; }
+    public void StartTime() { Time.timeScale = 1; startButtom.gameObject.SetActive(false); }
     public void showMenu(bool byDeath) {
         if (menu.activeSelf == true) { return; }
         resumeButtom.gameObject.SetActive(!byDeath);
@@ -51,22 +54,31 @@ public class UI : MonoBehaviour {
         startButtom.onClick.AddListener(StartTime);
         resumeButtom.onClick.AddListener(Resume);
         restartButtom.onClick.AddListener(Restart);
+        shopButtom.onClick.AddListener(Shop);
+        settingsButtom.onClick.AddListener(Settings);
+        exitSettingsButtom.onClick.AddListener(ExitSettings);
+        exitShopButtom.onClick.AddListener(ExitShop);
         exitButtom.onClick.AddListener(Exit);
-        slowButtom.onClick.AddListener(() => ChangeTimeSpeed(0.75f));
-        speedButtom.onClick.AddListener(() => ChangeTimeSpeed(1.25f));
-        superSpeedButtom.onClick.AddListener(() => ChangeTimeSpeed(2f));
     }
     private void Resume() {
         StartTime();
-        menu.SetActive(false);
+        menu.SetActive(false);     
     }
+
     private void Restart() {
         loadScreen.SetActive(true);
         int index = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(index);
+        StartTime();
     }
+
+    private void Shop() { shopScreen.SetActive(true); }
+    private void Settings() { settingsScreen.SetActive(true); }
+    private void ExitSettings() { settingsScreen.SetActive(false); }
+    private void ExitShop() { shopScreen.SetActive(false); }
     private void Exit() {
         loadScreen.SetActive(true);
         SceneManager.LoadScene(0);
     }
+
 }
