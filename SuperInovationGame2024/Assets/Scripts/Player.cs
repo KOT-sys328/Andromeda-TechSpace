@@ -12,11 +12,11 @@ public class Player : MonoBehaviour
     [SerializeField] private Text moneyText;
     [SerializeField] private Text maxScoreText;
     [SerializeField] float speed;
-    public int score;
+    public int score = 0;
     public static int maxScore = 0;
     public float scoreTimer;
     public float moneyTimer;
-    public static int money = 0;
+    public static int money = 100;
     private const int dangerLayer = 9;
     private bool onDeath = false;
     private float timerOnDeath = 0.0f;

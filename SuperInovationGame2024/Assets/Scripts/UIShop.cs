@@ -6,20 +6,20 @@ using Unity.VisualScripting;
 using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
+using System.Data.SqlTypes;
 
 public class UIShop : MonoBehaviour {
 
     public static UI Instance;
     [SerializeField] private Button rightButtom;
     [SerializeField] private Button leftButtom;
-    [SerializeField] private Button skinOne;
-    [SerializeField] private Button skinTwo;
-    [SerializeField] private Button skinThree;
-    [SerializeField] private Button skinFour;
-    [SerializeField] private List<GameObject> pages;
+    [SerializeField] private List<int> skinsCost;
     [SerializeField] private List<Text> pagesID;
+    [SerializeField] private List<Text> skinsPurchased;
+    [SerializeField] private List<Button> skins;
+    [SerializeField] private List<GameObject> pages;
+    [SerializeField] private List<GameObject> skinsPrefabs;
     private int currentPageID = 0;
-    private int currentPage = 0;
     void Start() 
     {
         OnClickBottom();
@@ -33,8 +33,13 @@ public class UIShop : MonoBehaviour {
     {
         rightButtom.onClick.AddListener(RightScrol);
         leftButtom.onClick.AddListener(LeftScrol);
+        for (int i = 0; i < skins.Count; i++) 
+        {
+            skins[i].onClick.AddListener(() => SkinsBuyOrChoise(skinsCost[i]));
+        }
     }
-    private void RightScrol() {
+    private void RightScrol()
+    {
         currentPageID += 1;
         print(currentPageID);
         if (currentPageID == 7) { currentPageID = 0; }
@@ -45,7 +50,8 @@ public class UIShop : MonoBehaviour {
         if (currentPageID != 0) { pagesID[currentPageID - 1].text = "-"; }
         else { pagesID[6].text = "-";}
     }
-    private void LeftScrol() {
+    private void LeftScrol()
+    {
         pages[currentPageID].SetActive(false);
         pagesID[currentPageID].text = "-";
         currentPageID -= 1;
@@ -53,5 +59,27 @@ public class UIShop : MonoBehaviour {
         print(currentPageID);
         pages[currentPageID].SetActive(true);
         pagesID[currentPageID].text = "+";
+    }
+
+    private void SkinsBuyOrChoise(int id)
+    {
+        if (skinsPurchased[id].text != "purchased") 
+        {
+            if (Player.money >= skinsCost[id])
+            {
+                skinsPurchased[id].text = "purchased";
+            }
+        }
+        else 
+        {
+            skinsPrefabs[id].SetActive(true);
+            for (int i = 0; i < skins.Count; i++)
+            {
+                if (i != id)
+                {
+                    skinsPrefabs[i].SetActive(false);
+                }
+            }
+        }
     }
 }
