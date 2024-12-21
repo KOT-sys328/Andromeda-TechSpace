@@ -12,11 +12,11 @@ public class Player : MonoBehaviour
     [SerializeField] private Text moneyText;
     [SerializeField] private Text maxScoreText;
     [SerializeField] float speed;
-    public static int score;
+    public int score;
     public static int maxScore = 0;
     public float scoreTimer;
     public float moneyTimer;
-    public int money = 0;
+    public static int money = 0;
     private const int dangerLayer = 9;
     private bool onDeath = false;
     private float timerOnDeath = 0.0f;
@@ -96,7 +96,7 @@ public class Player : MonoBehaviour
         moneyTimer += Time.deltaTime;
         if (moneyTimer >= 5) {
             money += 1 * multiplier;
-            moneyText.text = "money: " + money.ToString();
+            moneyText.text = "Money: " + money.ToString();
             moneyTimer = 0.0f;
         }
     }
