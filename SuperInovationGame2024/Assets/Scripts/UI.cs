@@ -33,7 +33,7 @@ public class UI : MonoBehaviour {
     }
     private void Update() 
     {
-        OnClickEnter();
+        OnClickEscape();
         
     }
 
@@ -45,9 +45,11 @@ public class UI : MonoBehaviour {
         menu.SetActive(true);
     }
 
-    private void OnClickEnter() {
+    private void OnClickEscape() {
         if (Input.GetKeyDown(KeyCode.Escape)) {
             showMenu(false);
+            shopScreen.SetActive(false);
+            settingsScreen.SetActive(false);
         }
     }
     private void OnClickBottom() {

@@ -9,7 +9,7 @@ using static UnityEditor.PlayerSettings;
 public class Player : MonoBehaviour
 {
     [SerializeField] private Text scoreText;
-    [SerializeField] private Text moneyText;
+    [SerializeField] public Text moneyText;
     [SerializeField] private Text maxScoreText;
     [SerializeField] float speed;
     public int score = 0;
@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     public float moneyTimer;
     public static int money = 100;
     private const int dangerLayer = 9;
+    private const int coinLayer = 10;
     private bool onDeath = false;
     private float timerOnDeath = 0.0f;
     private RectTransform rect;
@@ -58,11 +59,16 @@ public class Player : MonoBehaviour
     }
 
     private void OnCollisionEnter(Collision collision) {
-        if (collision.gameObject.layer == dangerLayer && onDeath != true) {
+        if (collision.gameObject.layer == dangerLayer && onDeath != true)
+        {
             if (maxScore < score) { maxScore = score; score = 0; }
             UI.Instance.showMenu(true);
             timerOnDeath = 3;
             onDeath = true;
+        }
+        if (collision.gameObject.layer == coinLayer && onDeath != true)
+        {
+            
         }
     }
 
@@ -74,7 +80,6 @@ public class Player : MonoBehaviour
             timerOnDeath = 0.0f;
         }
     }
-
     private void ToOriginPos() {
         coll.isTrigger = true;
         rb.velocity = Vector3.zero;
