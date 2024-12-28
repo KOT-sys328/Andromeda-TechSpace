@@ -13,7 +13,6 @@ public class CoinGenerator : MonoBehaviour
     private int coinRandom;
     private float coinTimer;
     private float coinNextTimer = 3;
-    private new List<GameObject> coinslist = new List<GameObject>();
    
     private Action<Transform> roomGen;
 
@@ -25,33 +24,38 @@ public class CoinGenerator : MonoBehaviour
     {
         GenerateCoin();
     }
-    private void GenerateCoin() {
+    private void GenerateCoin()
+    {
         coinTimer += Time.deltaTime;
         if (coinTimer >= coinNextTimer)
         {
-            coinRandom = Random.Range(0, 20);
-            if (coinRandom <= 14) {
-                var coin = Instantiate(coinGmo[0], new Vector3(Random.Range(-3, 3), -6, Random.Range(-3, 3)), new Quaternion(0, 0, 0, 0));
+            coinRandom = Random.Range(0, 100);
+            if (coinRandom <= 70)
+            {
+                var coin = Instantiate(coinGmo[0], new Vector3(Random.Range(-3, 3), -24, Random.Range(-3, 3)), new Quaternion(0, 0, 0, 0));
                 StartCoroutine(Move(coin));
             }
-            if (coinRandom >= 15 && coinRandom <= 19) {
-                var coin = Instantiate(coinGmo[1], new Vector3(Random.Range(-3, 3), -6, Random.Range(-3, 3)), new Quaternion(0, 0, 0, 0));
+            if (coinRandom >= 71 && coinRandom <= 95)
+            {
+                var coin = Instantiate(coinGmo[1], new Vector3(Random.Range(-3, 3), -24, Random.Range(-3, 3)), new Quaternion(0, 0, 0, 0));
                 StartCoroutine(Move(coin));
             }
-            else {
-                var coin = Instantiate(coinGmo[2], new Vector3(Random.Range(-3, 3), -6, Random.Range(-3, 3)), new Quaternion(0, 0, 0, 0));
+            if (coinRandom >= 96)
+            {
+                var coin = Instantiate(coinGmo[2], new Vector3(Random.Range(-3, 3), -24, Random.Range(-3, 3)), new Quaternion(0, 0, 0, 0));
                 StartCoroutine(Move(coin));
             }
             coinTimer = 0;
-            coinNextTimer = Random.Range(1, 8);
+            coinNextTimer = Random.Range(3, 8);
         }
     }
-    IEnumerator Move(GameObject coin) {
-        while (coin.transform.position.y < 6) {
+    IEnumerator Move(GameObject coin) 
+    {
+        while (coin.transform.position.y < 6)
+        {
             coin.transform.position += Vector3.up * speed * Time.deltaTime;
             yield return null;
         }
-        coin.gameObject.SetActive(false);
+        Destroy(coin);
     }
-
 }

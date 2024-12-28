@@ -1,21 +1,23 @@
 using System.Collections.Generic;
 using System.Collections;
 using System;
-using UnityEngine.SceneManagement;
 using Unity.VisualScripting;
 using UnityEngine.UI;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
-using System.Data.SqlTypes;
-using Palmmedia.ReportGenerator.Core.Common;
+using System.IO;
+using Core;
 
 public class UIShop : MonoBehaviour {
 
     public static UI Instance;
+    private DataStructure _DataStructure;
+    private Player _Player;
     [SerializeField] private Button rightButtom;
     [SerializeField] private Button leftButtom;
     [SerializeField] private List<Text> pagesID;
-    [SerializeField] private List<Text> skinsPurchased;
+    [SerializeField] public List<Text> skinsPurchased;
+    //[SerializeField] public List<GameObject> skinsPurchasedGMO;
+    //[SerializeField] private static List<Text> skinsPurchased = new List<Text>();
     [SerializeField] private List<Button> skins;
     [SerializeField] private List<GameObject> pages;
     [SerializeField] private List<GameObject> skinsPrefabs;
@@ -23,6 +25,9 @@ public class UIShop : MonoBehaviour {
     void Start() 
     {
         OnClickBottom();
+        //LoadData();
+        //_DataStructure.maxScore = _Player.maxScore;
+        //_DataStructure.skinsPurchased = skinsPurchased;
     }
     private void Update() 
     {
@@ -62,6 +67,8 @@ public class UIShop : MonoBehaviour {
 
     private void SkinsBuyOrChoise(int id)
     {
+        print(skinsPurchased.Count);
+        print(id);
         if (!skinsPurchased[id].text.Contains("purchased")) 
         {
             if (Player.money >= int.Parse(skinsPurchased[id].text.Split(" ")[0]))
@@ -81,5 +88,31 @@ public class UIShop : MonoBehaviour {
                 }
             }
         }
+    }
+
+    public void SaveData()
+    {
+        StreamWriter sw = new StreamWriter(Application.persistentDataPath + "/Data.json");
+        for (int i = 0; i < 2; i++)
+        {
+            string json = JsonUtility.ToJson(_DataStructure);
+            sw.WriteLine(json);
+            print(json);
+        }
+        sw.Close();
+        print("Saved");
+    }
+    
+    private void LoadData()
+    {
+        skinsPurchased.Clear();
+        string[] readed = File.ReadAllLines(Application.persistentDataPath + "/Data.json");
+        if (readed.Length < 5) { return; }
+        for (int i = 0; i < readed.Length; i++)
+        {
+            DataStructure newText = JsonUtility.FromJson<DataStructure>(readed[i]);
+            skinsPurchased.Add(newText.skinsPurchased[i]);
+        }
+        print("Loaded");
     }
 }

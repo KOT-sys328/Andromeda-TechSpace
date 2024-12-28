@@ -38,21 +38,25 @@ public class UI : MonoBehaviour {
     }
 
     public void StartTime() { Time.timeScale = 1; startButtom.gameObject.SetActive(false); }
-    public void showMenu(bool byDeath) {
+    public void showMenu(bool byDeath) 
+    {
         if (menu.activeSelf == true) { return; }
         resumeButtom.gameObject.SetActive(!byDeath);
         Time.timeScale = 0;
         menu.SetActive(true);
     }
 
-    private void OnClickEscape() {
-        if (Input.GetKeyDown(KeyCode.Escape)) {
+    private void OnClickEscape() 
+    {
+        if (Input.GetKeyDown(KeyCode.Escape)) 
+        {
             showMenu(false);
             shopScreen.SetActive(false);
             settingsScreen.SetActive(false);
         }
     }
-    private void OnClickBottom() {
+    private void OnClickBottom() 
+    {
         startButtom.onClick.AddListener(StartTime);
         resumeButtom.onClick.AddListener(Resume);
         restartButtom.onClick.AddListener(Restart);
@@ -62,12 +66,14 @@ public class UI : MonoBehaviour {
         exitShopButtom.onClick.AddListener(ExitShop);
         exitButtom.onClick.AddListener(Exit);
     }
-    private void Resume() {
+    private void Resume() 
+    {
         StartTime();
         menu.SetActive(false);     
     }
 
-    private void Restart() {
+    private void Restart()
+    {
         loadScreen.SetActive(true);
         int index = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(index);
@@ -78,7 +84,8 @@ public class UI : MonoBehaviour {
     private void Settings() { settingsScreen.SetActive(true); }
     private void ExitSettings() { settingsScreen.SetActive(false); }
     private void ExitShop() { shopScreen.SetActive(false); }
-    private void Exit() {
+    private void Exit() 
+    {
         loadScreen.SetActive(true);
         SceneManager.LoadScene(0);
     }

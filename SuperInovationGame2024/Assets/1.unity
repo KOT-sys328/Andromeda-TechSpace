@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4482484, g: 0.49827534, b: 0.57558256, a: 1}
+  m_IndirectSpecularColor: {r: 0.4482491, g: 0.49827605, b: 0.5755831, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1792,7 +1792,7 @@ GameObject:
   - component: {fileID: 325004432}
   - component: {fileID: 325004433}
   m_Layer: 5
-  m_Name: cost
+  m_Name: cost_6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2694,7 +2694,7 @@ GameObject:
   - component: {fileID: 491710428}
   - component: {fileID: 491710427}
   m_Layer: 5
-  m_Name: cost
+  m_Name: cost_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4337,6 +4337,10 @@ PrefabInstance:
     - target: {fileID: 6225562688715642175, guid: b0ed1965fe85d8f4baa73ef1abdab16a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7725338418598986043, guid: b0ed1965fe85d8f4baa73ef1abdab16a, type: 3}
+      propertyPath: m_Constraints
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6230,7 +6234,7 @@ GameObject:
   - component: {fileID: 1199591417}
   - component: {fileID: 1199591416}
   m_Layer: 5
-  m_Name: cost
+  m_Name: cost_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6348,7 +6352,7 @@ GameObject:
   - component: {fileID: 1202647198}
   - component: {fileID: 1202647197}
   m_Layer: 5
-  m_Name: cost
+  m_Name: cost_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6651,7 +6655,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 7f4274b47686e3345b33274fe860fac2, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.072
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -7867,7 +7871,7 @@ GameObject:
   - component: {fileID: 1583853809}
   - component: {fileID: 1583853808}
   m_Layer: 5
-  m_Name: cost
+  m_Name: cost_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8598,7 +8602,7 @@ GameObject:
   - component: {fileID: 1751952097}
   - component: {fileID: 1751952098}
   m_Layer: 5
-  m_Name: cost
+  m_Name: cost_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

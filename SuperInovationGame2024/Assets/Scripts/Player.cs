@@ -8,19 +8,20 @@ using static UnityEditor.PlayerSettings;
 
 public class Player : MonoBehaviour
 {
+    private UIShop _UIShop;
+    [SerializeField] private Text maxScoreText;
     [SerializeField] private Text scoreText;
     [SerializeField] public Text moneyText;
-    [SerializeField] private Text maxScoreText;
     [SerializeField] float speed;
-    public int score = 0;
-    public static int maxScore = 0;
+    private float timerOnDeath = 0.0f;
     public float scoreTimer;
     public float moneyTimer;
-    public static int money = 100;
     private const int dangerLayer = 9;
     private const int coinLayer = 10;
+    public int maxScore = 0;
+    public static int money = 100;
+    public int  score = 0;
     private bool onDeath = false;
-    private float timerOnDeath = 0.0f;
     private RectTransform rect;
     private Canvas canvas;
     private BoxCollider coll;
@@ -47,47 +48,65 @@ public class Player : MonoBehaviour
         Score();
         Money(1);
     }
-    private void MoveForMouse() {
-
+    private void MoveForMouse() 
+    {
         RectTransformUtility.ScreenPointToLocalPointInRectangle (
             canvas.transform as RectTransform,
             Input.mousePosition,
             canvas.worldCamera,
             out Vector2 localPoint
         );
-        rect.localPosition = new Vector3(localPoint.x, localPoint.y, rect.localPosition.z);
+        rect.localPosition = new Vector3(localPoint.x, localPoint.y, 0);
     }
 
-    private void OnCollisionEnter(Collision collision) {
+    private void OnCollisionEnter(Collision collision) 
+    {
         if (collision.gameObject.layer == dangerLayer && onDeath != true)
         {
             if (maxScore < score) { maxScore = score; score = 0; }
+            //_UIShop.SaveData();
             UI.Instance.showMenu(true);
             timerOnDeath = 3;
             onDeath = true;
         }
         if (collision.gameObject.layer == coinLayer && onDeath != true)
         {
-            
+            if (collision.gameObject.name == "Coin_1(Clone)")
+            {
+                AddMoney(1);
+            }
+            if (collision.gameObject.name == "Coin_2(Clone)")
+            {
+                AddMoney(5);
+            }
+            if (collision.gameObject.name == "Coin_3(Clone)")
+            {
+                AddMoney(10);
+            }
+            Destroy(collision.gameObject);
         }
     }
 
-    private void OnDeath() {
+    private void OnDeath() 
+    {
         if (onDeath && timerOnDeath > 0.0f) { timerOnDeath -= Time.deltaTime; }
-        if (timerOnDeath <= 0.0f) {
+        if (timerOnDeath <= 0.0f)
+        {
             coll.isTrigger = false;
             onDeath = false;
             timerOnDeath = 0.0f;
         }
     }
-    private void ToOriginPos() {
+    private void ToOriginPos() 
+    {
         coll.isTrigger = true;
         rb.velocity = Vector3.zero;
         rect.localPosition = originPos;
         rect.localRotation = originRot;
     }
 
-    public void Score() {
+    public void Score() 
+    {
         scoreTimer += Time.deltaTime;
         if (scoreTimer >= 1.0f) {
             scoreTimer = 0.0f;
@@ -97,7 +116,8 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void Money(int multiplier) {
+    private void Money(int multiplier) 
+    {
         moneyTimer += Time.deltaTime;
         if (moneyTimer >= 5) {
             money += 1 * multiplier;
@@ -105,7 +125,8 @@ public class Player : MonoBehaviour
             moneyTimer = 0.0f;
         }
     }
-    public void AddMoney(int multiplier) { 
+    public void AddMoney(int multiplier) 
+    { 
         money += 1 * multiplier; 
         moneyText.text = "Money: " + money.ToString();
     }
