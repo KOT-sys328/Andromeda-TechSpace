@@ -10,6 +10,7 @@ namespace Core
     public class DataStructure : MonoBehaviour
     {
         public int maxScore;
+        public int money;
         public List<Text> skinsPurchased;
     }
 }

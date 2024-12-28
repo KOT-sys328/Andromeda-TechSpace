@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
     private const int dangerLayer = 9;
     private const int coinLayer = 10;
     public int maxScore = 0;
-    public static int money = 100;
+    public int money = 100;
     public int  score = 0;
     private bool onDeath = false;
     private RectTransform rect;
@@ -63,8 +63,7 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.layer == dangerLayer && onDeath != true)
         {
-            if (maxScore < score) { maxScore = score; score = 0; }
-            //_UIShop.SaveData();
+            if (maxScore < score) { maxScore = score; score = 0; };
             UI.Instance.showMenu(true);
             timerOnDeath = 3;
             onDeath = true;
