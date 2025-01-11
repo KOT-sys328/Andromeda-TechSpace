@@ -5,10 +5,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem.HID;
 using static UnityEditor.PlayerSettings;
+using UnityEditor.SceneManagement;
 
 public class Player : MonoBehaviour
 {
-    private UIShop _UIShop;
+    private UIShop _UIShop = new UIShop();
+    private JsonS json = new JsonS();
     [SerializeField] private Text maxScoreText;
     [SerializeField] private Text scoreText;
     [SerializeField] public Text moneyText;
@@ -64,7 +66,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.layer == dangerLayer && onDeath != true)
         {
             if (maxScore < score) { maxScore = score; score = 0; }
-            //_UIShop.SaveData();
+            json.Save();
             UI.Instance.showMenu(true);
             timerOnDeath = 3;
             onDeath = true;
