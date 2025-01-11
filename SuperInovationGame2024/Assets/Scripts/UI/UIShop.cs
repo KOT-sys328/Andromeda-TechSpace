@@ -5,11 +5,10 @@ using Unity.VisualScripting;
 using UnityEngine.UI;
 using UnityEngine;
 using System.IO;
-using Core;
 
 public class UIShop : MonoBehaviour {
 
-    public static UI Instance;
+    public static UIShop Instance;
     private Player _Player;
     [SerializeField] private Button rightButtom;
     [SerializeField] private Button leftButtom;
@@ -21,7 +20,9 @@ public class UIShop : MonoBehaviour {
     private int currentPageID = 0;
     void Start() 
     {
+        Instance = this;
         OnClickBottom();
+        withJSON.LoadData();
     }
 
     private void OnClickBottom()

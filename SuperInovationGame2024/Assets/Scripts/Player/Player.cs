@@ -1,14 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.InputSystem.HID;
-using static UnityEditor.PlayerSettings;
 
 public class Player : MonoBehaviour
 {
-    private UIShop _UIShop;
+    public static Player Instance;
     [SerializeField] private Text maxScoreText;
     [SerializeField] private Text scoreText;
     [SerializeField] public Text moneyText;
@@ -30,6 +25,7 @@ public class Player : MonoBehaviour
     private Quaternion originRot;
     void Start()
     {
+        Instance = this;
         rb = GetComponent<Rigidbody>();
         rect = GetComponent<RectTransform>();
         canvas = GetComponentInParent<Canvas>();
@@ -64,6 +60,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.layer == dangerLayer && onDeath != true)
         {
             if (maxScore < score) { maxScore = score; score = 0; };
+            withJSON.SaveData();
             UI.Instance.showMenu(true);
             timerOnDeath = 3;
             onDeath = true;

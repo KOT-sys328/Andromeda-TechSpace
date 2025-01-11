@@ -4,13 +4,16 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Core
+[System.Serializable]
+public class DataStructure : MonoBehaviour
 {
-    [System.Serializable]
-    public class DataStructure : MonoBehaviour
+    public int maxScore;
+    public int money;
+    public List<Text> skinsPurchased;
+    public static DataStructure Instance;
+
+    private void Awake()
     {
-        public int maxScore;
-        public int money;
-        public List<Text> skinsPurchased;
+        Instance = this;
     }
 }

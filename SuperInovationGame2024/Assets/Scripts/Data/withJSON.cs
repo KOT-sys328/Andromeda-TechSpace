@@ -1,50 +1,43 @@
-using System.Collections.Generic;
-using System.Collections;
 using System.IO;
-using UnityEngine.UI;
 using UnityEngine;
-using Core;
 
-public class withJSON : MonoBehaviour
+public static class withJSON
 {
-    private UIShop _UIShop = new UIShop();
-    private Player _Player = new Player();
-    private DataStructure _DataStructure = new DataStructure();
 
-    private void Start()
+    public static void SaveData()
     {
-        _DataStructure.maxScore = _Player.maxScore;
-        _DataStructure.money = _Player.money;
-        _DataStructure.skinsPurchased = _UIShop.skinsPurchased;
-        print(_DataStructure.skinsPurchased.Count);
-        print(_DataStructure.maxScore);
-        print(_DataStructure.money);
+        string dataPath = Application.persistentDataPath + "/Data.json";
+        DataStructure.Instance.money = Player.Instance.money;
+        DataStructure.Instance.maxScore = Player.Instance.maxScore;
+        DataStructure.Instance.skinsPurchased = UIShop.Instance.skinsPurchased;
+
+        Debug.Log(DataStructure.Instance);
+        Debug.Log(Player.Instance.money);
+        Debug.Log(Player.Instance.maxScore);
+        Debug.Log(UIShop.Instance.skinsPurchased);
+        Debug.Log(dataPath);
+
+        string jsonString = JsonUtility.ToJson(DataStructure.Instance);
+        File.WriteAllText(dataPath, jsonString);
     }
 
-    public void SaveData()
+    public static void LoadData()
     {
-        StreamWriter sw = new StreamWriter(Application.persistentDataPath + "/Data.json");
-        for (int i = 0; i < 3; i++)
-        {
-            string json = JsonUtility.ToJson(_DataStructure);
-            sw.WriteLine(json);
-            print(json);
-        }
-        sw.Close();
-        print("Saved");
-    }
+        string dataPath = Application.persistentDataPath + "/Data.json";
 
-    private void LoadData()
-    {
-        string[] readed = File.ReadAllLines(Application.persistentDataPath + "/Data.json");
-        if (readed.Length < 5) { return; }
-        List<Text> SkinsPurchased = new List<Text>();
-        for (int i = 0; i < readed.Length; i++)
+        if (File.Exists(dataPath))
         {
-            _DataStructure = JsonUtility.FromJson<DataStructure>(readed[i]);
-            SkinsPurchased.Add(_DataStructure.skinsPurchased[i]);
+            string fileData = File.ReadAllText(dataPath);
+            DataStructure data = JsonUtility.FromJson<DataStructure>(fileData);
+
+            UIShop.Instance.skinsPurchased = data.skinsPurchased;
+            Player.Instance.maxScore = data.maxScore;
+            Player.Instance.money = data.money;
+
+            Debug.Log(DataStructure.Instance);
+            Debug.Log(Player.Instance.money);
+            Debug.Log(Player.Instance.maxScore);
+            Debug.Log(UIShop.Instance.skinsPurchased);
         }
-        _UIShop.skinsPurchased = SkinsPurchased;
-        print("Loaded");
     }
 }

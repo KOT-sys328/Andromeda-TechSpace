@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: PlayerModels
   m_EditorClassIdentifier: 
   models:
+  - {fileID: 243146788313058405, guid: 556f4a0038bd2b442a5d0b5f56013816, type: 3}
   - {fileID: 243146788313058405, guid: b0ed1965fe85d8f4baa73ef1abdab16a, type: 3}
   - {fileID: 243146788313058405, guid: 3ba7f2be7e138474da67a28676364693, type: 3}
   - {fileID: 243146788313058405, guid: 2589dca9292076d4f9b2079d88a76d17, type: 3}
   - {fileID: 243146788313058405, guid: 05326b2a8d57d8641bef73749779d915, type: 3}
   - {fileID: 243146788313058405, guid: 1ce1546458cf11a46aa23917f8eb685a, type: 3}
-  - {fileID: 243146788313058405, guid: af4ba52cfd79c034f8f135cd024065cf, type: 3}

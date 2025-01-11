@@ -3485,7 +3485,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55ecb0b281e27ad469be66af9f8a8bbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  modelSO: {fileID: 0}
+  modelSO: {fileID: 11400000, guid: 6b03b4a36b802c54e9c66d4d6c6c69e4, type: 2}
 --- !u!1 &565541609
 GameObject:
   m_ObjectHideFlags: 0
@@ -4177,6 +4177,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4313428477239007179, guid: 556f4a0038bd2b442a5d0b5f56013816, type: 3}
+      propertyPath: moneyText
+      value: 
+      objectReference: {fileID: 1793254424}
+    - target: {fileID: 4313428477239007179, guid: 556f4a0038bd2b442a5d0b5f56013816, type: 3}
+      propertyPath: scoreText
+      value: 
+      objectReference: {fileID: 1949815706}
+    - target: {fileID: 4313428477239007179, guid: 556f4a0038bd2b442a5d0b5f56013816, type: 3}
+      propertyPath: maxScoreText
+      value: 
+      objectReference: {fileID: 1404016495}
     - target: {fileID: 6225562688715642175, guid: 556f4a0038bd2b442a5d0b5f56013816, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
