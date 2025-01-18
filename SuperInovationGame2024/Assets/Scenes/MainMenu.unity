@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -389,7 +389,8 @@ MonoBehaviour:
   startButton: {fileID: 648095611}
   exitButton: {fileID: 1418675673}
   shopButton: {fileID: 1664073313}
-  shopMenu: {fileID: 1100753891}
+  shopMenu: {fileID: 696110433}
+  shop: {fileID: 1100753891}
 --- !u!1 &326502510
 GameObject:
   m_ObjectHideFlags: 0
@@ -782,11 +783,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1e63163e71127647a0a0f5f5c6caf6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pointerMaterial: {fileID: 2100000, guid: 3c45a0a6770bd5243a402367e7599a71, type: 2}
   shop: {fileID: 1100753891}
   buttonExit: {fileID: 1360049955}
   shopButtonPrefabs: {fileID: 4128051588951060487, guid: fa0ea60fe9a1fc246885fb5b6d12444f, type: 3}
   content: {fileID: 496935674}
   skin: {fileID: 11400000, guid: dc278bc10bf2c5d4cb8ec760b3964bba, type: 2}
+  shopButton: {fileID: 1664073313}
 --- !u!114 &696110434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1751,8 +1754,8 @@ Canvas:
   m_GameObject: {fileID: 1390138898}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 1498168162}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1

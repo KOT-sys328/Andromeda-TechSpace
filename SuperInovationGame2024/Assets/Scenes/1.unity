@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4482491, g: 0.49827605, b: 0.5755831, a: 1}
+  m_IndirectSpecularColor: {r: 0.4482484, g: 0.49827534, b: 0.57558256, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -97,8 +97,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 95b6b60a4b1fb1c48a3cbdaaeb903518, type: 2}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: 9682b25c1ba2d5f4984f66fc93857e9c, type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -5146,37 +5146,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64329ed4c3de81641a99ef1e31dc38bf, type: 3}
---- !u!1 &1829073185 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4534685178313370752, guid: 76c3f78204fb4664eaf418957f49c977, type: 3}
-  m_PrefabInstance: {fileID: 3008125116632730048}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1829073186 stripped
-Transform:
+--- !u!224 &1829073186 stripped
+RectTransform:
   m_CorrespondingSourceObject: {fileID: 322181306721311351, guid: 76c3f78204fb4664eaf418957f49c977, type: 3}
   m_PrefabInstance: {fileID: 3008125116632730048}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1829073187
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1829073185}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60d1207dfe23d0642884ea45da1ac794, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skinsHolder: {fileID: 11400000, guid: dc278bc10bf2c5d4cb8ec760b3964bba, type: 2}
-  maxScoreText: {fileID: 1404016495}
-  scoreText: {fileID: 1949815706}
-  moneyText: {fileID: 1793254424}
-  speed: 5
-  scoreTimer: 0
-  moneyTimer: 0
-  maxScore: 0
-  score: 0
 --- !u!1 &1895093470
 GameObject:
   m_ObjectHideFlags: 0
@@ -5653,16 +5627,36 @@ PrefabInstance:
     m_TransformParent: {fileID: 1122182213}
     m_Modifications:
     - target: {fileID: 322181306721311351, guid: 76c3f78204fb4664eaf418957f49c977, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
+      propertyPath: m_Pivot.x
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 322181306721311351, guid: 76c3f78204fb4664eaf418957f49c977, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
+      propertyPath: m_Pivot.y
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 322181306721311351, guid: 76c3f78204fb4664eaf418957f49c977, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 322181306721311351, guid: 76c3f78204fb4664eaf418957f49c977, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 322181306721311351, guid: 76c3f78204fb4664eaf418957f49c977, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 322181306721311351, guid: 76c3f78204fb4664eaf418957f49c977, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 322181306721311351, guid: 76c3f78204fb4664eaf418957f49c977, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 322181306721311351, guid: 76c3f78204fb4664eaf418957f49c977, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 322181306721311351, guid: 76c3f78204fb4664eaf418957f49c977, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5693,6 +5687,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 322181306721311351, guid: 76c3f78204fb4664eaf418957f49c977, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 322181306721311351, guid: 76c3f78204fb4664eaf418957f49c977, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 322181306721311351, guid: 76c3f78204fb4664eaf418957f49c977, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
@@ -5704,18 +5706,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4030557163094604718, guid: 76c3f78204fb4664eaf418957f49c977, type: 3}
+      propertyPath: moneyText
+      value: 
+      objectReference: {fileID: 1793254424}
+    - target: {fileID: 4030557163094604718, guid: 76c3f78204fb4664eaf418957f49c977, type: 3}
+      propertyPath: scoreText
+      value: 
+      objectReference: {fileID: 1949815706}
+    - target: {fileID: 4030557163094604718, guid: 76c3f78204fb4664eaf418957f49c977, type: 3}
+      propertyPath: maxScoreText
+      value: 
+      objectReference: {fileID: 1404016495}
     - target: {fileID: 4534685178313370752, guid: 76c3f78204fb4664eaf418957f49c977, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1778562718037730215, guid: 76c3f78204fb4664eaf418957f49c977, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4534685178313370752, guid: 76c3f78204fb4664eaf418957f49c977, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1829073187}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 76c3f78204fb4664eaf418957f49c977, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

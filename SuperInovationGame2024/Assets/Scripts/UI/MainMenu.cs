@@ -7,11 +7,14 @@ public class MainMenu : MonoBehaviour
     [SerializeField] Button startButton;
     [SerializeField] Button exitButton;
     [SerializeField] Button shopButton;
-    [SerializeField] GameObject shopMenu;
+    [SerializeField] Shop shopMenu;
+    [SerializeField] GameObject shop;
 
     private void Start()
     {
         startButton.onClick.AddListener(StartGame);
+
+        shopMenu.Init();
         shopButton.onClick.AddListener(OpenShop);
         exitButton.onClick.AddListener(Exit);
     }
@@ -22,7 +25,7 @@ public class MainMenu : MonoBehaviour
 
     private void OpenShop()
     {
-        shopMenu.SetActive(true);
+        shop.SetActive(true);
     }
 
     private void Exit()

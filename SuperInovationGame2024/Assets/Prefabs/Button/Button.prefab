@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7112657403402494573}
   - component: {fileID: 3328543049909939922}
   - component: {fileID: 4128051588951060487}
+  - component: {fileID: 8493334346314490843}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -55,7 +56,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1972762012810919712}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -134,8 +135,60 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3ce66a93aadabe448f97e3929819dda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shopButtonPrefabs:
+  - {fileID: 3706292769386972698, guid: 34436fb3209292c44ab380805297ed23, type: 3}
+  - {fileID: 4662362078594550356, guid: 0db3cc1418d2ab84490a6103778b07e3, type: 3}
+  - {fileID: 5662249475361573164, guid: b8aa17cba5c95954c80b12617692e4b5, type: 3}
+  - {fileID: 3276282309731948142, guid: 6a6597c73afc0fe47af42b14b03fb4c0, type: 3}
+  - {fileID: 7592101374345497815, guid: b74d3d93f6ca7f14b8e9bc8a91d03075, type: 3}
+  - {fileID: 2462900857990049217, guid: fa25af52b6266664c9e6add64e2199f9, type: 3}
   buttonText: {fileID: 8226125429101153982}
   button: {fileID: 3328543049909939922}
+--- !u!61 &8493334346314490843
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1972762012810919712}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &8531394052348872155
 GameObject:
   m_ObjectHideFlags: 0
@@ -153,7 +206,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6725323158149499905
 RectTransform:
   m_ObjectHideFlags: 0

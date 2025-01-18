@@ -79,7 +79,10 @@ public class UI : MonoBehaviour {
     }
 
     private void Settings() { settingsScreen.SetActive(true); }
-    private void ExitSettings() { settingsScreen.SetActive(false); }
+    private void ExitSettings()
+    { 
+        settingsScreen.SetActive(false);
+    }
     private void Exit() 
     {
         loadScreen.SetActive(true);

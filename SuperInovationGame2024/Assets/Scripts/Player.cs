@@ -19,18 +19,20 @@ public class Player : MonoBehaviour
     private bool onDeath = false;
     private RectTransform rect;
     private Canvas canvas;
-    private BoxCollider coll;
+    private Collider coll;
     private Rigidbody rb;
     private Vector3 originPos;
     private Quaternion originRot;
     void Start()
     {
-        PlyerData.Load();
-        Instantiate(skinsHolder.Skins[PlyerData.SkinNum], rect);
-        rb = GetComponent<Rigidbody>();
+        money = PlayerPrefs.GetInt("money");
+        maxScore = PlayerPrefs.GetInt("maxScore");
         rect = GetComponent<RectTransform>();
+        PlyerData.Load();
+        var model = Instantiate(skinsHolder.Skins[PlyerData.SkinNum], rect);
+        rb = GetComponent<Rigidbody>();
         canvas = GetComponentInParent<Canvas>();
-        coll = GetComponent<BoxCollider>();
+        coll = model.GetComponent<Collider>();
         originPos = rect.localPosition;
         originRot = rect.localRotation;
         scoreText.text = "Score: " + score.ToString();
@@ -88,6 +90,8 @@ public class Player : MonoBehaviour
         if (onDeath && timerOnDeath > 0.0f) { timerOnDeath -= Time.deltaTime; }
         if (timerOnDeath <= 0.0f)
         {
+            PlayerPrefs.SetInt("money", money);
+            PlayerPrefs.SetInt("maxScore", maxScore);
             coll.isTrigger = false;
             onDeath = false;
             timerOnDeath = 0.0f;
