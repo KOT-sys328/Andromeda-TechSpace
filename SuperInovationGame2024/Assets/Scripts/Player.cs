@@ -1,16 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.InputSystem.HID;
-using static UnityEditor.PlayerSettings;
-using UnityEditor.SceneManagement;
 
 public class Player : MonoBehaviour
 {
-    private UIShop _UIShop = new UIShop();
-    private JsonS json = new JsonS();
+    [SerializeField] skinsHolder skinsHolder;
     [SerializeField] private Text maxScoreText;
     [SerializeField] private Text scoreText;
     [SerializeField] public Text moneyText;
@@ -32,6 +25,8 @@ public class Player : MonoBehaviour
     private Quaternion originRot;
     void Start()
     {
+        PlyerData.Load();
+        Instantiate(skinsHolder.Skins[PlyerData.SkinNum], rect);
         rb = GetComponent<Rigidbody>();
         rect = GetComponent<RectTransform>();
         canvas = GetComponentInParent<Canvas>();
@@ -66,7 +61,6 @@ public class Player : MonoBehaviour
         if (collision.gameObject.layer == dangerLayer && onDeath != true)
         {
             if (maxScore < score) { maxScore = score; score = 0; }
-            json.Save();
             UI.Instance.showMenu(true);
             timerOnDeath = 3;
             onDeath = true;

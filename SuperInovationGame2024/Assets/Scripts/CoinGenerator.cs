@@ -42,7 +42,7 @@ public class CoinGenerator : MonoBehaviour
             }
             if (coinRandom >= 96)
             {
-                var coin = Instantiate(coinGmo[2], new Vector3(Random.Range(-3, 3), -24, Random.Range(-3, 3)), new Quaternion(0, 0, 0, 0));
+               var coin = Instantiate(coinGmo[2], new Vector3(Random.Range(-3, 3), -24, Random.Range(-3, 3)), new Quaternion(0, 0, 0, 0));
                 StartCoroutine(Move(coin));
             }
             coinTimer = 0;
