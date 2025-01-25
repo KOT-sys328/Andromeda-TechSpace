@@ -1,11 +1,6 @@
-using System.Collections.Generic;
-using System.Collections;
-using System;
 using UnityEngine.SceneManagement;
-using Unity.VisualScripting;
 using UnityEngine.UI;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 
 public class UI : MonoBehaviour {
 

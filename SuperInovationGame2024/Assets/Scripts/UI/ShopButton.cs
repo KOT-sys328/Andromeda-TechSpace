@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine.EventSystems;
 using System.Linq;
+using Unity.VisualScripting;
 
 public class ShopButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
@@ -14,19 +15,22 @@ public class ShopButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     private RectTransform model;
     private Coroutine rotate;
-    private List<Material> skinMaterials;
+    private List<Renderer> skinRenderers = new List<Renderer>();
     private Material pointerEnterMaterial;
     private Material originMaterial;
 
     public void Init(int num, Material material)
     {
+        skinRenderers.Clear();
         buttonText.text = $"skin {num + 1}";
         button.onClick.AddListener(() => PlyerData.ChangeSkin(num));
         model = Instantiate(shopButtonPrefabs[num], transform).GetComponent<RectTransform>();
         model.localScale = new Vector3(80, 80, 80);
-        skinMaterials = transform.GetChild(0).GetComponentsInChildren<Material>().ToList();
+
+        skinRenderers = transform.GetChild(2).GetComponentsInChildren<Renderer>().ToList();
+
         pointerEnterMaterial = material;
-        originMaterial = transform.GetChild(0).GetChild(0).GetComponent<Material>();
+        originMaterial = transform.GetChild(2).GetChild(0).GetComponent<Renderer>().material;
     }
 
     void OnEnable()
@@ -55,17 +59,17 @@ public class ShopButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        for (int i = 0; i < skinMaterials.Count; i++)
+        for (int i = 0; i < skinRenderers.Count; i++)
         {
-            skinMaterials[i] = pointerEnterMaterial;
+            skinRenderers[i].material = pointerEnterMaterial;
         }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        for (int i = 0; i < skinMaterials.Count; i++)
+        for (int i = 0; i < skinRenderers.Count; i++)
         {
-            skinMaterials[i] = originMaterial;
+            skinRenderers[i].material = originMaterial;
         }
     }
 }

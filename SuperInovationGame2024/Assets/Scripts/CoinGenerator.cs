@@ -13,7 +13,7 @@ public class CoinGenerator : MonoBehaviour
     private int coinRandom;
     private float coinTimer;
     private float coinNextTimer = 3;
-   
+
     private Action<Transform> roomGen;
 
     void Awake()
@@ -49,18 +49,13 @@ public class CoinGenerator : MonoBehaviour
             coinNextTimer = Random.Range(3, 8);
         }
     }
-    IEnumerator Move(GameObject coin) 
+    IEnumerator Move(GameObject coin)
     {
-        while (coin.transform.position.y < 6)
+        while (coin != null && coin.transform.position.y < 6)
         {
             coin.transform.position += Vector3.up * speed * Time.deltaTime;
             yield return null;
         }
-        DestroyCoin(coin);
-    }
-
-    private void DestroyCoin(GameObject coin)
-    {
         Destroy(coin);
     }
 }
