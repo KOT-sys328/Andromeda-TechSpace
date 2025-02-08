@@ -645,7 +645,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 20}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &496935675
 MonoBehaviour:
@@ -668,7 +668,7 @@ MonoBehaviour:
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 110, y: 110}
-  m_Spacing: {x: 20, y: 20}
+  m_Spacing: {x: 20, y: 60}
   m_Constraint: 0
   m_ConstraintCount: 2
 --- !u!114 &496935676
@@ -859,12 +859,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1e63163e71127647a0a0f5f5c6caf6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointerMaterial: {fileID: 2100000, guid: 3c45a0a6770bd5243a402367e7599a71, type: 2}
-  shop: {fileID: 1100753891}
-  buttonExit: {fileID: 1360049955}
-  shopButtonPrefabs: {fileID: 4128051588951060487, guid: fa0ea60fe9a1fc246885fb5b6d12444f, type: 3}
-  content: {fileID: 496935674}
+  pointerMaterial:
+  - {fileID: 2100000, guid: dfef16fd9560d9048a67d42dfdd9e33a, type: 2}
+  - {fileID: 2100000, guid: 3c45a0a6770bd5243a402367e7599a71, type: 2}
+  moneyText: {fileID: 1459642498}
   skin: {fileID: 11400000, guid: dc278bc10bf2c5d4cb8ec760b3964bba, type: 2}
+  shopButtonPrefabs: {fileID: 4128051588951060487, guid: fa0ea60fe9a1fc246885fb5b6d12444f, type: 3}
+  shop: {fileID: 1100753891}
+  content: {fileID: 496935674}
+  buttonExit: {fileID: 1360049955}
   shopButton: {fileID: 1664073313}
 --- !u!114 &696110434
 MonoBehaviour:
@@ -2267,13 +2270,13 @@ Camera:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1
-    height: 1
+    width: 1920
+    height: 1080
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
-  orthographic size: 5
+  orthographic: 1
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

@@ -5,25 +5,28 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine.EventSystems;
 using System.Linq;
-using Unity.VisualScripting;
 
 public class ShopButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] List<GameObject> shopButtonPrefabs;
-    [SerializeField] TextMeshProUGUI buttonText;
+    [SerializeField] public TextMeshProUGUI buttonText;
     [SerializeField] Button button;
 
+    [SerializeField] public string ButtonName;
+    [SerializeField] public bool onBuy = false;
+    [SerializeField] public int cost;
+    [SerializeField] public int id;
+
+    private List<Material> pointerEnterMaterial = new List<Material>();
+    private List<Renderer> skinRenderers = new List<Renderer>();
     private RectTransform model;
     private Coroutine rotate;
-    private List<Renderer> skinRenderers = new List<Renderer>();
-    private Material pointerEnterMaterial;
     private Material originMaterial;
 
-    public void Init(int num, Material material)
+    public void Init(int num, List<Material> material)
     {
         skinRenderers.Clear();
-        buttonText.text = $"skin {num + 1}";
-        button.onClick.AddListener(() => PlyerData.ChangeSkin(num));
+        button.onClick.AddListener(() => PlyerData.ChangeSkin(num, gameObject));
         model = Instantiate(shopButtonPrefabs[num], transform).GetComponent<RectTransform>();
         model.localScale = new Vector3(80, 80, 80);
 
@@ -31,6 +34,9 @@ public class ShopButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
         pointerEnterMaterial = material;
         originMaterial = transform.GetChild(2).GetChild(0).GetComponent<Renderer>().material;
+
+        PlyerData.SetDataOnButton(num, gameObject);
+        buttonText.text = $"skin {num + 1} \n cost {cost}";
     }
 
     void OnEnable()
@@ -61,7 +67,14 @@ public class ShopButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     {
         for (int i = 0; i < skinRenderers.Count; i++)
         {
-            skinRenderers[i].material = pointerEnterMaterial;
+            if (onBuy)
+            {
+                skinRenderers[i].material = pointerEnterMaterial[0];
+            }
+            else
+            {
+                skinRenderers[i].material = pointerEnterMaterial[1];
+            }
         }
     }
 

@@ -6,8 +6,6 @@ using Random = UnityEngine.Random;
 
 public class CoinGenerator : MonoBehaviour
 {
-
-    [SerializeField] List<Transform> coinTrn = new List<Transform>();
     [SerializeField] List<GameObject> coinGmo = new List<GameObject>();
     [SerializeField] float speed;
     private int coinRandom;

@@ -3,26 +3,26 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] skinsHolder skinsHolder;
-    [SerializeField] private Text maxScoreText;
-    [SerializeField] private Text scoreText;
     [SerializeField] public Text moneyText;
+    [SerializeField] skinsHolder skinsHolder;
+    [SerializeField] Text maxScoreText;
+    [SerializeField] Text scoreText;
     [SerializeField] float speed;
-    private float timerOnDeath = 0.0f;
     public float scoreTimer;
     public float moneyTimer;
-    private const int dangerLayer = 9;
-    private const int coinLayer = 10;
     public int maxScore = 0;
-    public static int money = 100;
-    public int  score = 0;
-    private bool onDeath = false;
-    private RectTransform rect;
-    private Canvas canvas;
-    private Collider coll;
-    private Rigidbody rb;
-    private Vector3 originPos;
-    private Quaternion originRot;
+    public int score = 0;
+    const int dangerLayer = 9;
+    const int coinLayer = 10;
+    float timerOnDeath = 0.0f;
+    bool onDeath = false;
+    int money = PlyerData.Money;
+    RectTransform rect;
+    Canvas canvas;
+    Collider coll;
+    Rigidbody rb;
+    Vector3 originPos;
+    Quaternion originRot;
     void Start()
     {
         money = PlayerPrefs.GetInt("money");
