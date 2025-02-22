@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class RoomGenerator : MonoBehaviour
@@ -9,7 +10,8 @@ public class RoomGenerator : MonoBehaviour
     [SerializeField] List<Transform> roomsRbs = new List<Transform>();
     [SerializeField] List<Transform> roomsPos = new List<Transform>();
     [SerializeField] Transform firstRoom;
-    [SerializeField] float speed;
+    [SerializeField] float speed = 1;
+    public float Speed => speed;
     private int roomsCount;
     private Action<Transform> roomGen;
 
@@ -43,5 +45,9 @@ public class RoomGenerator : MonoBehaviour
 
         room.gameObject.SetActive(false);
         roomGen(roomsPos[roomsPos.Count-1]);
+    }
+    public void ChangeSpeed(float add_speed)
+    {
+        speed += add_speed;
     }
 }

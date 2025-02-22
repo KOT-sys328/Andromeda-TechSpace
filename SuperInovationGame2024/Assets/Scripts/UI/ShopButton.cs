@@ -17,26 +17,35 @@ public class ShopButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     [SerializeField] public int cost;
     [SerializeField] public int id;
 
+    [SerializeField] TextMeshProUGUI costText;
+
+    public Button Button => button;
+
     private List<Material> pointerEnterMaterial = new List<Material>();
     private List<Renderer> skinRenderers = new List<Renderer>();
     private RectTransform model;
     private Coroutine rotate;
     private Material originMaterial;
 
-    public void Init(int num, List<Material> material)
+    public void Init(SingleSkinSO skin)
     {
-        skinRenderers.Clear();
-        button.onClick.AddListener(() => PlyerData.ChangeSkin(num, gameObject));
-        model = Instantiate(shopButtonPrefabs[num], transform).GetComponent<RectTransform>();
-        model.localScale = new Vector3(80, 80, 80);
+        //List<Material> material
 
-        skinRenderers = transform.GetChild(2).GetComponentsInChildren<Renderer>().ToList();
+        //skinRenderers.Clear();
+        //button.onClick.AddListener(() => PlyerData.ChangeSkin(num, gameObject));
+        //model = Instantiate(shopButtonPrefabs[num], transform).GetComponent<RectTransform>();
+        //model.localScale = new Vector3(80, 80, 80);
 
-        pointerEnterMaterial = material;
-        originMaterial = transform.GetChild(2).GetChild(0).GetComponent<Renderer>().material;
+        //skinRenderers = transform.GetChild(2).GetComponentsInChildren<Renderer>().ToList();
 
-        PlyerData.SetDataOnButton(num, gameObject);
-        buttonText.text = $"skin {num + 1} \n cost {cost}";
+        //pointerEnterMaterial = material;
+        //originMaterial = transform.GetChild(2).GetChild(0).GetComponent<Renderer>().material;
+
+        //PlyerData.SetDataOnButton(num, gameObject);
+
+        buttonText.text = $"{skin.name} \n cost {skin.Cost}";
+        Instantiate(skin.Skin, transform);
+
     }
 
     void OnEnable()

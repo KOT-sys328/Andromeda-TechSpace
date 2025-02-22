@@ -46,7 +46,6 @@ public class UI : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Escape)) 
         {
             showMenu(false);
-            shopScreen.SetActive(false);
             settingsScreen.SetActive(false);
         }
     }

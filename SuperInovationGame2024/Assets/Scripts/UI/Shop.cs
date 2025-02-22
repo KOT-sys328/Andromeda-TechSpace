@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 public class Shop : MonoBehaviour
 {
+    ShopButton _ShopButton;
     [SerializeField] List<Material> pointerMaterial = new List<Material>();
     [SerializeField] TextMeshProUGUI moneyText;
     [SerializeField] skinsHolder skin;
@@ -18,7 +19,10 @@ public class Shop : MonoBehaviour
         buttonExit.onClick.AddListener(() => Close());
         shopButton.onClick.AddListener(ShopButton);
 
-        ShopButton();
+        for (int i = 0; i < 6; i++)
+        {
+            _ShopButton.Init(skin.Skins[i]);
+        }
     }
 
     void Close()
@@ -33,10 +37,10 @@ public class Shop : MonoBehaviour
 
         for (int i = 0; i < skin.Skins.Count; i++)
         {
-            var _shopButton = Instantiate(shopButtonPrefabs, content);
-            _shopButton.Init(i, pointerMaterial);
-            _shopButton.GetComponent<ShopButton>().id = i;
-            shopButton.onClick.AddListener(() => BuyButton(_shopButton.gameObject));
+            //var _shopButton = Instantiate(shopButtonPrefabs, content);
+            //_shopButton.Init(i, pointerMaterial);
+            //_shopButton.GetComponent<ShopButton>().id = i;
+            //_shopButton.Button.onClick.AddListener(() => BuyButton(_shopButton.gameObject));
         }
     }
 
