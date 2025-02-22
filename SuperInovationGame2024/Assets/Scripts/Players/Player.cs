@@ -15,29 +15,22 @@ public class Player : MonoBehaviour
     const int dangerLayer = 9;
     const int coinLayer = 10;
     float timerOnDeath = 0.0f;
+    float timer;
     bool onDeath = false;
-    int money = PlyerData.Money;
     RectTransform rect;
     Canvas canvas;
     Collider coll;
-    Rigidbody rb;
-    Vector3 originPos;
-    Quaternion originRot;
     void Start()
     {
-        money = PlayerPrefs.GetInt("money");
         maxScore = PlayerPrefs.GetInt("maxScore");
         rect = GetComponent<RectTransform>();
         PlyerData.Load();
         var model = Instantiate(skinsHolder.Skins[PlyerData.SkinNum], rect);
-        rb = GetComponent<Rigidbody>();
         canvas = GetComponentInParent<Canvas>();
         coll = model.GetComponent<Collider>();
-        originPos = rect.localPosition;
-        originRot = rect.localRotation;
         scoreText.text = "Score: " + score.ToString();
         maxScoreText.text = "Max score: " + maxScore.ToString();
-        moneyText.text = "Money: " + money.ToString();
+        moneyText.text = "Money: " + PlyerData.Money.ToString();
     }
     void Update()
     {
@@ -45,7 +38,12 @@ public class Player : MonoBehaviour
         MoveForMouse();
         OnDeath();
         Score();
-        Money(1);
+        timer += Time.deltaTime;
+        if (timer >= 3)
+        {
+            timer = 0;
+            PlyerData.AddMoney(1);
+        }
     }
     private void MoveForMouse() 
     {
@@ -69,18 +67,9 @@ public class Player : MonoBehaviour
         }
         if (collision.gameObject.layer == coinLayer && onDeath != true)
         {
-            if (collision.gameObject.name == "Coin_1(Clone)")
-            {
-                AddMoney(1);
-            }
-            if (collision.gameObject.name == "Coin_2(Clone)")
-            {
-                AddMoney(5);
-            }
-            if (collision.gameObject.name == "Coin_3(Clone)")
-            {
-                AddMoney(10);
-            }
+            if (collision.gameObject.name == "Coin_1(Clone)") { PlyerData.AddMoney(1);  }
+            if (collision.gameObject.name == "Coin_2(Clone)") { PlyerData.AddMoney(5);  }
+            if (collision.gameObject.name == "Coin_3(Clone)") { PlyerData.AddMoney(10); }
             Destroy(collision.gameObject);
         }
     }
@@ -90,19 +79,11 @@ public class Player : MonoBehaviour
         if (onDeath && timerOnDeath > 0.0f) { timerOnDeath -= Time.deltaTime; }
         if (timerOnDeath <= 0.0f)
         {
-            PlayerPrefs.SetInt("money", money);
-            PlayerPrefs.SetInt("maxScore", maxScore);
+            PlyerData.Save();
             coll.isTrigger = false;
             onDeath = false;
             timerOnDeath = 0.0f;
         }
-    }
-    private void ToOriginPos() 
-    {
-        coll.isTrigger = true;
-        rb.velocity = Vector3.zero;
-        rect.localPosition = originPos;
-        rect.localRotation = originRot;
     }
 
     public void Score() 
@@ -114,20 +95,5 @@ public class Player : MonoBehaviour
             scoreText.text = "Score: " + score.ToString();
             maxScoreText.text = "Max score: " + maxScore.ToString();
         }
-    }
-
-    private void Money(int multiplier) 
-    {
-        moneyTimer += Time.deltaTime;
-        if (moneyTimer >= 5) {
-            money += 1 * multiplier;
-            moneyText.text = "Money: " + money.ToString();
-            moneyTimer = 0.0f;
-        }
-    }
-    public void AddMoney(int multiplier) 
-    { 
-        money += 1 * multiplier; 
-        moneyText.text = "Money: " + money.ToString();
     }
 }

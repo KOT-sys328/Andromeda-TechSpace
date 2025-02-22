@@ -4,8 +4,8 @@ using TMPro;
 public class ShopMoneyText : MonoBehaviour
 {
     [SerializeField] GameObject shopMoneyText;
-    private void OnEnable()
+    private void Update()
     {
-        shopMoneyText.GetComponent<TextMeshProUGUI>().text = $"Money {PlayerPrefs.GetInt("money").ToString()}";
+        shopMoneyText.GetComponent<TextMeshProUGUI>().text = $"Money {PlyerData.Money.ToString()}";
     }
 }
