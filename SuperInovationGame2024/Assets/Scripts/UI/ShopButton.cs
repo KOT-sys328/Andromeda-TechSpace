@@ -27,24 +27,20 @@ public class ShopButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     private Coroutine rotate;
     private Material originMaterial;
 
-    public void Init(SingleSkinSO skin)
+    public void Init(SingleSkinSO skin, int num)
     {
-        //List<Material> material
+        skinRenderers.Clear();
+        button.onClick.AddListener(() => PlayerData.ChangeSkin(skin.name));
+        var model = Instantiate(skin.Skin, transform);
+        model.GetComponent<RectTransform>().localScale = new Vector3(80, 80, 80);
 
-        //skinRenderers.Clear();
-        //button.onClick.AddListener(() => PlyerData.ChangeSkin(num, gameObject));
-        //model = Instantiate(shopButtonPrefabs[num], transform).GetComponent<RectTransform>();
-        //model.localScale = new Vector3(80, 80, 80);
+        skinRenderers = transform.GetChild(2).GetComponentsInChildren<Renderer>().ToList();
 
-        //skinRenderers = transform.GetChild(2).GetComponentsInChildren<Renderer>().ToList();
+        originMaterial = transform.GetChild(2).GetChild(0).GetComponent<Renderer>().material;
 
-        //pointerEnterMaterial = material;
-        //originMaterial = transform.GetChild(2).GetChild(0).GetComponent<Renderer>().material;
-
-        //PlyerData.SetDataOnButton(num, gameObject);
+        PlayerData.SetDataOnButton(num, gameObject);
 
         buttonText.text = $"{skin.name} \n cost {skin.Cost}";
-        Instantiate(skin.Skin, transform);
 
     }
 

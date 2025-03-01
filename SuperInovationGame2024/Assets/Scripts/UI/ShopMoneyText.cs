@@ -6,6 +6,6 @@ public class ShopMoneyText : MonoBehaviour
     [SerializeField] GameObject shopMoneyText;
     private void Update()
     {
-        shopMoneyText.GetComponent<TextMeshProUGUI>().text = $"Money {PlyerData.Money.ToString()}";
+        shopMoneyText.GetComponent<TextMeshProUGUI>().text = $"Money {PlayerData.Coins.ToString()}";
     }
 }

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public class Shop : MonoBehaviour
 {
-    ShopButton _ShopButton;
+    ShopButton _ShopButton = new ShopButton();
     [SerializeField] List<Material> pointerMaterial = new List<Material>();
     [SerializeField] TextMeshProUGUI moneyText;
     [SerializeField] skinsHolder skin;
@@ -17,39 +17,26 @@ public class Shop : MonoBehaviour
     public void Init()
     {
         buttonExit.onClick.AddListener(() => Close());
-        shopButton.onClick.AddListener(ShopButton);
 
         for (int i = 0; i < 6; i++)
         {
-            _ShopButton.Init(skin.Skins[i]);
+            _ShopButton.Init(skin.Skins[i], i);
         }
     }
 
     void Close()
     {
         shop.SetActive(false);
-        PlyerData.Save();
-    }
-
-    void ShopButton()
-    {
-        if (content.childCount > 0) return;
-
-        for (int i = 0; i < skin.Skins.Count; i++)
-        {
-            //var _shopButton = Instantiate(shopButtonPrefabs, content);
-            //_shopButton.Init(i, pointerMaterial);
-            //_shopButton.GetComponent<ShopButton>().id = i;
-            //_shopButton.Button.onClick.AddListener(() => BuyButton(_shopButton.gameObject));
-        }
+        PlayerData.Save();
+    
     }
 
     void BuyButton(GameObject button)
     {
         int cost = button.GetComponent<ShopButton>().cost;
-        if (PlyerData.Money > cost)
+        if (PlayerData.Coins > cost)
         {
-            PlyerData.MinusMoney(cost);
+            PlayerData.MinusMoney(cost);
             button.GetComponent<ShopButton>().buttonText.text = $"Skin {button.GetComponent<ShopButton>().id}";
         }
     }

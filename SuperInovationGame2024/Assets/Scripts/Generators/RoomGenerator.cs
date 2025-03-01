@@ -37,7 +37,7 @@ public class RoomGenerator : MonoBehaviour
     }
     IEnumerator Move(Transform room) 
     {
-        while (room.transform.position.y < 6) 
+        while (room.transform.position.y < 7)
         {
             room.position += Vector3.up * speed * Time.deltaTime;
             yield return null;

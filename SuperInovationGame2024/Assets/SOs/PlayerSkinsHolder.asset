@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: PlayerSkinsHolder
   m_EditorClassIdentifier: 
   skins:
-  - {fileID: 3706292769386972698, guid: 34436fb3209292c44ab380805297ed23, type: 3}
-  - {fileID: 4662362078594550356, guid: 0db3cc1418d2ab84490a6103778b07e3, type: 3}
-  - {fileID: 5662249475361573164, guid: b8aa17cba5c95954c80b12617692e4b5, type: 3}
-  - {fileID: 3276282309731948142, guid: 6a6597c73afc0fe47af42b14b03fb4c0, type: 3}
-  - {fileID: 7592101374345497815, guid: b74d3d93f6ca7f14b8e9bc8a91d03075, type: 3}
-  - {fileID: 2462900857990049217, guid: fa25af52b6266664c9e6add64e2199f9, type: 3}
+  - {fileID: 11400000, guid: 2e66c969d41cec540832898f66dd379b, type: 2}
+  - {fileID: 11400000, guid: 0147fa7956969d640b2bf8b487f0d491, type: 2}
+  - {fileID: 11400000, guid: 0929f2662acb92a49a5ae701491456aa, type: 2}
+  - {fileID: 11400000, guid: 1ecb3ff148101604092a61e7fc99e84c, type: 2}
+  - {fileID: 11400000, guid: 1bf6badf6b1203b42beb37705361250d, type: 2}
+  - {fileID: 11400000, guid: 067fe8fe0e3091343bdd51818f42e760, type: 2}
