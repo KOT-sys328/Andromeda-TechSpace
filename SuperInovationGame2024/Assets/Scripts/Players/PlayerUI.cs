@@ -18,9 +18,9 @@ public class PlayerUI : MonoBehaviour
     public bool onEasyMode;
     private void Start()
     {
-        scoreText.text    = "Score: "     + PlyerData.Score.ToString();
-        maxScoreText.text = "Max score: " + PlyerData.MaxScore.ToString();
-        moneyText.text    = "Money: "     + PlyerData.Money.ToString();
+        scoreText.text    = "Score: "     + PlayerData.Score.ToString();
+        maxScoreText.text = "Max score: " + PlayerData.HighScore.ToString();
+        moneyText.text    = "Money: "     + PlayerData.Coins.ToString();
     }
     private void Update()
     {
@@ -35,8 +35,8 @@ public class PlayerUI : MonoBehaviour
     }
     public void UpdateText()
     {
-        scoreText.text    = "Score: "     + PlyerData.Score.ToString();
-        maxScoreText.text = "Max score: " + PlyerData.MaxScore.ToString();
-        moneyText.text    = "Money: "     + PlyerData.Money.ToString();
+        scoreText.text    = "Score: "     + PlayerData.Score.ToString();
+        maxScoreText.text = "Max score: " + PlayerData.HighScore.ToString();
+        moneyText.text    = "Money: "     + PlayerData.Coins.ToString();
     }
 }

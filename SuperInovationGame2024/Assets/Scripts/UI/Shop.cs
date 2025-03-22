@@ -5,7 +5,6 @@ using System.Collections.Generic;
 
 public class Shop : MonoBehaviour
 {
-    ShopButton _ShopButton = new ShopButton();
     [SerializeField] List<Material> pointerMaterial = new List<Material>();
     [SerializeField] TextMeshProUGUI moneyText;
     [SerializeField] skinsHolder skin;
@@ -20,7 +19,8 @@ public class Shop : MonoBehaviour
 
         for (int i = 0; i < 6; i++)
         {
-            _ShopButton.Init(skin.Skins[i], i);
+            ShopButton shopButton = Instantiate(shopButtonPrefabs, content);
+            shopButton.Init(skin.Skins[i], BuySkin);
         }
     }
 
@@ -36,8 +36,13 @@ public class Shop : MonoBehaviour
         int cost = button.GetComponent<ShopButton>().cost;
         if (PlayerData.Coins > cost)
         {
-            PlayerData.MinusMoney(cost);
+            PlayerData.SubCoin(cost);
             button.GetComponent<ShopButton>().buttonText.text = $"Skin {button.GetComponent<ShopButton>().id}";
         }
+    }
+
+    public void BuySkin(string name)
+    {
+        PlayerData.ChangeSkin(name);
     }
 }

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine.EventSystems;
 using System.Linq;
+using System;
 
 public class ShopButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
@@ -23,14 +24,16 @@ public class ShopButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     private List<Material> pointerEnterMaterial = new List<Material>();
     private List<Renderer> skinRenderers = new List<Renderer>();
-    private RectTransform model;
     private Coroutine rotate;
     private Material originMaterial;
+    private GameObject model;
 
-    public void Init(SingleSkinSO skin, int num)
+    private string Name;
+
+    public void Init(SingleSkinSO skin, Action<string> buyAction)
     {
+        Name = skin.name;
         skinRenderers.Clear();
-        button.onClick.AddListener(() => PlayerData.ChangeSkin(skin.name));
         var model = Instantiate(skin.Skin, transform);
         model.GetComponent<RectTransform>().localScale = new Vector3(80, 80, 80);
 
@@ -38,16 +41,17 @@ public class ShopButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
         originMaterial = transform.GetChild(2).GetChild(0).GetComponent<Renderer>().material;
 
-        PlayerData.SetDataOnButton(num, gameObject);
+        //PlayerData.SetDataOnButton(num, gameObject);
 
-        buttonText.text = $"{skin.name} \n cost {skin.Cost}";
+        //buttonText.text = $"{skin.name} \n cost {skin.Cost}";
 
+        button.onClick.AddListener(() => buyAction?.Invoke(buttonText.text));
     }
 
     void OnEnable()
     {
         if (rotate == null)
-            rotate = StartCoroutine(Rotate(model));
+            rotate = StartCoroutine(Rotate());
     }
 
     private void OnDisable()
@@ -59,11 +63,11 @@ public class ShopButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         }
     }
 
-    IEnumerator Rotate(RectTransform model)
+    IEnumerator Rotate()
     {
         while (true)
         {
-            model.Rotate(new Vector3((model.transform.position.x + Time.deltaTime) / 25, (model.transform.position.y + Time.deltaTime) / 25, 0));
+            model.GetComponent<ShopButton>().Rotate(new Vector3((model.transform.position.x + Time.deltaTime) / 25, (model.transform.position.y + Time.deltaTime) / 25, 0));
             yield return null;
         }
     }

@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
-using UnityEngine.SocialPlatforms.Impl;
 
 [System.Serializable]
 public class SaveData
@@ -14,12 +13,14 @@ public class SaveData
 
 public static class PlayerData
 {
-    public static string filePath = Path.Combine(Application.persistentDataPath, "Data.json");
-    public static string currentSkin;
-    public static List<string> unlockedSkins = new List<string>();
-    public static int coins;
-    public static int highScore;
-    public static int score;
+    private static string filePath = Path.Combine(Application.persistentDataPath, "Data.json");
+    private static string currentSkin;
+    private static List<string> unlockedSkins = new List<string>();
+    private static int coins;
+    private static int highScore;
+    private static int score;
+
+    
 
     public static string CurentSkin => currentSkin;
     public static List<string> UnlockedSkins => unlockedSkins;
@@ -31,10 +32,10 @@ public static class PlayerData
     {
         SaveData data = new SaveData
         {
-            currentSkin = currentSkin,
+            currentSkin   = currentSkin,
             unlockedSkins = new List<string> { },
-            coins = coins,
-            highScore = highScore
+            coins         = coins,
+            highScore     = highScore
         };
 
         string json = JsonUtility.ToJson(data, true);
@@ -48,16 +49,17 @@ public static class PlayerData
             string json = File.ReadAllText(filePath);
             SaveData data = JsonUtility.FromJson<SaveData>(json);
 
-            currentSkin = data.currentSkin;
+            currentSkin   = data.currentSkin;
             unlockedSkins = data.unlockedSkins;
-            coins = data.coins; 
-            highScore = data.highScore;
+            coins         = data.coins; 
+            highScore     = data.highScore;
         }
     }
 
     public static void ChangeSkin(string skinName)
     {
         currentSkin = skinName;
+        AddSkin(skinName);
     }
 
     public static void AddSkin(string skinName)
@@ -73,6 +75,11 @@ public static class PlayerData
         coins += amount;
     }
 
+    public static void SubCoin(int amount)
+    {
+        coins -= amount;
+    }
+
     public static void SetHighScore(int score)
     {
         if (score > highScore)
@@ -80,4 +87,5 @@ public static class PlayerData
             highScore = score;
         }
     }
+
 }
