@@ -3,12 +3,13 @@ using UnityEngine;
 public class CameraMove : MonoBehaviour
 {
     [SerializeField] Canvas canvas;
-    int x;
-    int z;
 
     private void Update()
     {
-        MoveForMouse();
+        if (Time.timeScale < 0.1f)
+        {
+            MoveForMouse();
+        }
     }
 
     private void MoveForMouse()

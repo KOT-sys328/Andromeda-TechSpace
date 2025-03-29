@@ -7,7 +7,7 @@ public class SaveData
 {
     public string currentSkin;
     public List<string> unlockedSkins;
-    public int coins;
+    public float coins;
     public int highScore;
 }
 
@@ -16,7 +16,7 @@ public static class PlayerData
     private static string filePath = Path.Combine(Application.persistentDataPath, "Data.json");
     private static string currentSkin;
     private static List<string> unlockedSkins = new List<string>();
-    private static int coins;
+    private static float coins;
     private static int highScore;
     private static int score;
 
@@ -24,7 +24,7 @@ public static class PlayerData
 
     public static string CurentSkin => currentSkin;
     public static List<string> UnlockedSkins => unlockedSkins;
-    public static int Coins => coins;
+    public static float Coins => coins;
     public static int HighScore => highScore;
     public static int Score => score;
 
@@ -32,10 +32,10 @@ public static class PlayerData
     {
         SaveData data = new SaveData
         {
-            currentSkin   = currentSkin,
-            unlockedSkins = new List<string> { },
-            coins         = coins,
-            highScore     = highScore
+            currentSkin = currentSkin,
+            unlockedSkins = unlockedSkins,
+            coins = coins,
+            highScore = highScore
         };
 
         string json = JsonUtility.ToJson(data, true);
@@ -70,12 +70,12 @@ public static class PlayerData
         }
     }
 
-    public static void AddCoin(int amount)
+    public static void AddCoin(float amount)
     {
         coins += amount;
     }
 
-    public static void SubCoin(int amount)
+    public static void SubCoin(float amount)
     {
         coins -= amount;
     }
@@ -88,4 +88,13 @@ public static class PlayerData
         }
     }
 
+    public static void Reset()
+    {
+        currentSkin = "Basic";
+        unlockedSkins = new List<string>();
+        coins = 0;
+        highScore = 0;
+
+        Save();
+    }
 }

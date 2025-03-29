@@ -9,6 +9,7 @@ using System;
 
 public class ShopButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    [SerializeField] private List<Material> pointerEnterMaterial = new List<Material>();
     [SerializeField] List<GameObject> shopButtonPrefabs;
     [SerializeField] public TextMeshProUGUI buttonText;
     [SerializeField] Button button;
@@ -18,34 +19,42 @@ public class ShopButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     [SerializeField] public int cost;
     [SerializeField] public int id;
 
-    [SerializeField] TextMeshProUGUI costText;
-
     public Button Button => button;
 
-    private List<Material> pointerEnterMaterial = new List<Material>();
     private List<Renderer> skinRenderers = new List<Renderer>();
     private Coroutine rotate;
     private Material originMaterial;
     private GameObject model;
 
-    private string Name;
+    private string name;
 
-    public void Init(SingleSkinSO skin, Action<string> buyAction)
+    public void Init(SingleSkinSO skin, Action<SingleSkinSO, Action, bool> buyAction, bool isUnlock)
     {
-        Name = skin.name;
+        name = skin.Name;
+        onBuy = isUnlock;
+        if (isUnlock)
+        {
+            buttonText.text = $"{skin.name} \n Unlocked";
+        } 
+        else
+        {
+            buttonText.text = $"{skin.name} \n cost {skin.Cost}";
+        }
+
         skinRenderers.Clear();
-        var model = Instantiate(skin.Skin, transform);
+        model = Instantiate(skin.Skin, transform);
         model.GetComponent<RectTransform>().localScale = new Vector3(80, 80, 80);
 
         skinRenderers = transform.GetChild(2).GetComponentsInChildren<Renderer>().ToList();
-
         originMaterial = transform.GetChild(2).GetChild(0).GetComponent<Renderer>().material;
 
-        //PlayerData.SetDataOnButton(num, gameObject);
+        button.onClick.AddListener(() => buyAction?.Invoke(skin, Unlock, onBuy));
+    }
 
-        //buttonText.text = $"{skin.name} \n cost {skin.Cost}";
-
-        button.onClick.AddListener(() => buyAction?.Invoke(buttonText.text));
+    public void Unlock()
+    {
+        onBuy = true;
+        buttonText.text = $"{name} \n Unlocked";
     }
 
     void OnEnable()
@@ -67,7 +76,7 @@ public class ShopButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     {
         while (true)
         {
-            model.GetComponent<ShopButton>().Rotate(new Vector3((model.transform.position.x + Time.deltaTime) / 25, (model.transform.position.y + Time.deltaTime) / 25, 0));
+            model.transform.Rotate(new Vector3((model.transform.position.x + Time.deltaTime) / 25, (model.transform.position.y + Time.deltaTime) / 25, 0));
             yield return null;
         }
     }

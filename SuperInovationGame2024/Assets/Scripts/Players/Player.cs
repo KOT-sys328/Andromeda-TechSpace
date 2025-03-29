@@ -15,9 +15,10 @@ public class Player : MonoBehaviour
     Canvas canvas;
     void Start()
     {
+        int skinNum = skinsHolder.FindNumByName(PlayerData.CurentSkin);
         PlayerData.Load();
         rect = GetComponent<RectTransform>();
-        //var model = Instantiate(skinsHolder.Skins[PlayerData.SkinNum].Skin, rect);
+        var model = Instantiate(skinsHolder.Skins[skinNum].Skin, rect);
         canvas = GetComponentInParent<Canvas>();
     }
     void Update()
@@ -45,7 +46,7 @@ public class Player : MonoBehaviour
             if (_PlayerUI.onGodMode) return;
             if (PlayerData.HighScore < PlayerData.Score) 
             {
-                //PlayerData.SetHighScore(PlayerData.Score);
+                PlayerData.SetHighScore(PlayerData.Score);
                 //PlayerData.MinusScore(PlayerData.Score); 
             }
             UI.Instance.showMenu(true);

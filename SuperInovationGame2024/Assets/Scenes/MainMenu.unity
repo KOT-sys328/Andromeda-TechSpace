@@ -913,6 +913,7 @@ MonoBehaviour:
   content: {fileID: 496935674}
   buttonExit: {fileID: 1360049955}
   shopButton: {fileID: 1664073313}
+  _skinsHolder: {fileID: 11400000, guid: dc278bc10bf2c5d4cb8ec760b3964bba, type: 2}
 --- !u!114 &696110434
 MonoBehaviour:
   m_ObjectHideFlags: 0
