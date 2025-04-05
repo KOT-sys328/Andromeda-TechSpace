@@ -105,6 +105,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3ce66a93aadabe448f97e3929819dda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pointerEnterMaterial:
+  - {fileID: 2100000, guid: dfef16fd9560d9048a67d42dfdd9e33a, type: 2}
+  - {fileID: 2100000, guid: 3c45a0a6770bd5243a402367e7599a71, type: 2}
   shopButtonPrefabs:
   - {fileID: 3706292769386972698, guid: 34436fb3209292c44ab380805297ed23, type: 3}
   - {fileID: 4662362078594550356, guid: 0db3cc1418d2ab84490a6103778b07e3, type: 3}
@@ -118,10 +121,7 @@ MonoBehaviour:
   onBuy: 0
   cost: 0
   id: 0
-  costText: {fileID: 0}
-  pointerEnterMaterial:
-  - {fileID: 2100000, guid: dfef16fd9560d9048a67d42dfdd9e33a, type: 2}
-  - {fileID: 2100000, guid: 3c45a0a6770bd5243a402367e7599a71, type: 2}
+  selectedMaterial: {fileID: 2100000, guid: 234764c17d9111e4b8217c7768a0ad27, type: 2}
 --- !u!61 &8493334346314490843
 BoxCollider2D:
   m_ObjectHideFlags: 0

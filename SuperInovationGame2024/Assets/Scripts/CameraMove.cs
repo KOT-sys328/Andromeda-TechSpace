@@ -6,7 +6,7 @@ public class CameraMove : MonoBehaviour
 
     private void Update()
     {
-        if (Time.timeScale < 0.1f)
+        if (Time.timeScale > 0.1f)
         {
             MoveForMouse();
         }

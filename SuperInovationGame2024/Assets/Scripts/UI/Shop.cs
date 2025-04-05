@@ -17,8 +17,11 @@ public class Shop : MonoBehaviour
     [SerializeField] Button shopButton;
 
     [SerializeField] private skinsHolder _skinsHolder;
+
+    public static ShopButton selectedButton;
     public void Init()
     {
+        ShopButton first = new ShopButton();
         buttonExit.onClick.AddListener(() => Close());
 
         for (int i = 0; i < 6; i++)
@@ -26,6 +29,16 @@ public class Shop : MonoBehaviour
             bool unlock = CheckUnlock(_skinsHolder.Skins[i]);
             ShopButton shopButton = Instantiate(shopButtonPrefabs, content);
             shopButton.Init(skin.Skins[i], BuySkin, unlock);
+            if (i == 0)
+                first = shopButton;
+            if (_skinsHolder.Skins[i].Name == PlayerData.CurentSkin)
+            {
+                shopButton.SetSelected();
+            }
+        }
+        if (selectedButton == null)
+        {
+            first.SetSelected();
         }
     }
 
@@ -41,21 +54,12 @@ public class Shop : MonoBehaviour
     
     }
 
-    void BuyButton(GameObject button)
-    {
-        int cost = button.GetComponent<ShopButton>().cost;
-        if (PlayerData.Coins > cost)
-        {
-            PlayerData.SubCoin(cost);
-            button.GetComponent<ShopButton>().buttonText.text = $"Skin {button.GetComponent<ShopButton>().id}";
-        }
-    }
-
-    public void BuySkin(SingleSkinSO skin, Action unlockAction, bool unlock)
+    public void BuySkin(SingleSkinSO skin, Action unlockAction, Action selectedAction, bool unlock)
     {
         if (unlock)
         {
             PlayerData.ChangeSkin(skin.name);
+            selectedAction.Invoke();
         }
         else
         {

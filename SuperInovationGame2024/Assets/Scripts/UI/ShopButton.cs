@@ -19,23 +19,25 @@ public class ShopButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     [SerializeField] public int cost;
     [SerializeField] public int id;
 
+    [SerializeField] Material selectedMaterial;
+
     public Button Button => button;
 
-    private List<Renderer> skinRenderers = new List<Renderer>();
+    public List<Renderer> skinRenderers = new List<Renderer>();
     private Coroutine rotate;
     private Material originMaterial;
     private GameObject model;
 
     private string name;
 
-    public void Init(SingleSkinSO skin, Action<SingleSkinSO, Action, bool> buyAction, bool isUnlock)
+    public void Init(SingleSkinSO skin, Action<SingleSkinSO, Action, Action, bool> buyAction, bool isUnlock)
     {
         name = skin.Name;
         onBuy = isUnlock;
         if (isUnlock)
         {
             buttonText.text = $"{skin.name} \n Unlocked";
-        } 
+        }
         else
         {
             buttonText.text = $"{skin.name} \n cost {skin.Cost}";
@@ -48,7 +50,7 @@ public class ShopButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         skinRenderers = transform.GetChild(2).GetComponentsInChildren<Renderer>().ToList();
         originMaterial = transform.GetChild(2).GetChild(0).GetComponent<Renderer>().material;
 
-        button.onClick.AddListener(() => buyAction?.Invoke(skin, Unlock, onBuy));
+        button.onClick.AddListener(() => buyAction?.Invoke(skin, Unlock, SetSelected, onBuy));
     }
 
     public void Unlock()
@@ -83,24 +85,56 @@ public class ShopButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        for (int i = 0; i < skinRenderers.Count; i++)
-        {
-            if (onBuy)
-            {
-                skinRenderers[i].material = pointerEnterMaterial[0];
-            }
-            else
-            {
-                skinRenderers[i].material = pointerEnterMaterial[1];
-            }
-        }
+        PaintObject(false);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        for (int i = 0; i < skinRenderers.Count; i++)
+        PaintObject(true);
+    }
+
+    public void PaintObject(bool toOrigin, bool forcePaint = false, bool fromSelect = false)
+    {
+        if (fromSelect)
         {
-            skinRenderers[i].material = originMaterial;
+            for (int i = 0; i < skinRenderers.Count; i++)
+            {
+                skinRenderers[i].material = selectedMaterial;
+            }
         }
+        else if (Shop.selectedButton.skinRenderers != skinRenderers || forcePaint)
+        {
+            if (toOrigin)
+            {
+                for (int i = 0; i < skinRenderers.Count; i++)
+                {
+                    skinRenderers[i].material = originMaterial;
+                }
+            }
+            else
+            {
+                for (int i = 0; i < skinRenderers.Count; i++)
+                {
+                    if (onBuy)
+                    {
+                        skinRenderers[i].material = pointerEnterMaterial[0];
+                    }
+                    else
+                    {
+                        skinRenderers[i].material = pointerEnterMaterial[1];
+                    }
+                }
+            }
+        }
+    }
+
+    public void SetSelected()
+    {
+        if (Shop.selectedButton != null)
+        {
+            Shop.selectedButton.PaintObject(true, true);
+        }
+        Shop.selectedButton = this;
+        PaintObject(false, true, true);
     }
 }

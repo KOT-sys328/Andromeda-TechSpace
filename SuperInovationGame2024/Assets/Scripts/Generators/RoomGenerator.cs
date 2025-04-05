@@ -1,12 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 public class RoomGenerator : MonoBehaviour
 {
-
+    [SerializeField] public List<Material> roomMaterials = new List<Material>();
     [SerializeField] List<Transform> roomsRbs = new List<Transform>();
     [SerializeField] List<Transform> roomsPos = new List<Transform>();
     [SerializeField] Transform firstRoom;
@@ -33,6 +32,7 @@ public class RoomGenerator : MonoBehaviour
 
         roomsRbs[randomNumber].transform.position = pos.position;
         roomsRbs[randomNumber].gameObject.SetActive(true);
+
         StartCoroutine(Move(roomsRbs[randomNumber]));
     }
     IEnumerator Move(Transform room) 
