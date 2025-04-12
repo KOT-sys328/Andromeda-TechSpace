@@ -1010,6 +1010,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a253286d67ab0f348ae30f1690f00301, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  roomMaterials: []
   roomsRbs:
   - {fileID: 1632705507}
   - {fileID: 522065955}
