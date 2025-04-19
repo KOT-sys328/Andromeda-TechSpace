@@ -47,7 +47,7 @@ public class Player : MonoBehaviour
             if (PlayerData.HighScore < PlayerData.Score) 
             {
                 PlayerData.SetHighScore(PlayerData.Score);
-                //PlayerData.MinusScore(PlayerData.Score); 
+                PlayerData.SubScore(PlayerData.Score); 
             }
             UI.Instance.showMenu(true);
             timerOnDeath = 3;
@@ -93,6 +93,7 @@ public class Player : MonoBehaviour
         {
             scoreTimer = 0.0f;
             PlayerData.AddCoin(1);
+            PlayerData.AddScore(1);
             _PlayerUI.UpdateText();
         }
     }

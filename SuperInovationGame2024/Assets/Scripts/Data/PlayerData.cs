@@ -80,6 +80,16 @@ public static class PlayerData
         coins -= amount;
     }
 
+    public static void AddScore(int addScore)
+    {
+        score += addScore;
+    }
+
+    public static void SubScore(int subScore)
+    {
+        score += subScore;
+    }
+
     public static void SetHighScore(int score)
     {
         if (score > highScore)

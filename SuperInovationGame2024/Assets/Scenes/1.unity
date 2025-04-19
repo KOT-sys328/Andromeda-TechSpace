@@ -1010,7 +1010,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a253286d67ab0f348ae30f1690f00301, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomMaterials: []
+  roomMaterials:
+  - {fileID: 2100000, guid: 236d236dacce798409d852796f3a5aeb, type: 2}
+  - {fileID: 2100000, guid: beba7eb48a12c4d4892f1ee530f96a31, type: 2}
+  - {fileID: 2100000, guid: ec02580c94152934c990a76457183ce2, type: 2}
+  - {fileID: 2100000, guid: 1b608d2d14a7bdc4da9d1f835f80e3d1, type: 2}
+  - {fileID: 2100000, guid: 371ce2f58872ec64da073221c651441a, type: 2}
+  - {fileID: 2100000, guid: 6cdebe05640e224438a11945dc92df67, type: 2}
+  - {fileID: 2100000, guid: 5eb76e80a863d1a40aa00d217221d592, type: 2}
+  - {fileID: 2100000, guid: a223c0d18d10d2941b822b2eb59dd29e, type: 2}
+  - {fileID: 2100000, guid: 1e5a5a9900636a44cb930d60313924fa, type: 2}
   roomsRbs:
   - {fileID: 1632705507}
   - {fileID: 522065955}
@@ -1038,6 +1047,7 @@ MonoBehaviour:
   - {fileID: 1452739429}
   - {fileID: 1792361992}
   - {fileID: 2135752680}
+  roomsGbj: []
   firstRoom: {fileID: 913379163}
   speed: 5
 --- !u!114 &248076061
