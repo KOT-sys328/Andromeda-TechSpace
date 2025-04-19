@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1172,7 +1172,7 @@ MonoBehaviour:
   shopButtonPrefabs: {fileID: 4128051588951060487, guid: fa0ea60fe9a1fc246885fb5b6d12444f, type: 3}
   shop: {fileID: 1100753891}
   content: {fileID: 1452612738}
-  buttonExit: {fileID: 1418675673}
+  buttonExit: {fileID: 1360049955}
   shopButton: {fileID: 1664073313}
   _skinsHolder: {fileID: 11400000, guid: dc278bc10bf2c5d4cb8ec760b3964bba, type: 2}
 --- !u!1 &1216470755
@@ -1754,10 +1754,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1216470756}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 560, y: 860}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1452612739
 MonoBehaviour:
@@ -1772,7 +1772,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 0
+    m_Left: 40
     m_Right: 0
     m_Top: 20
     m_Bottom: 20
@@ -1881,8 +1881,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 48
-  m_fontSizeBase: 48
+  m_fontSize: 42
+  m_fontSizeBase: 42
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
